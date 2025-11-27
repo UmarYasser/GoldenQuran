@@ -1,0 +1,17 @@
+[Back-end]
+Left: 16th Nov
+1-Tafseer Model: CRUDs & relation with Ayah Model
+2-SEARCHSS: Search By [Surah, Juz, Ayah]
+     B) LiveSearch for both
+3-Voice Recitation?
+
+
+11/16 => Ayah Bulk Insert Done💫 Bulk Page Assign Done💫
+Before adding the rest of the surahs, pageNumber problem must be resolved
+[BulkPageAssign] => API that takes the 1st and last ayah of that page, and assignes all the ayat 'pageNumber'  in between (inclusive) to that page
+Will be done to the whole 604 pages | But that's the fastest method, instead of doing them manually one-by-one
+If done as inteded, a page assign won't take >10 sec.
+Same must be done to Juz assignment
+
+
+11/21 => Tafseer CRUDs & Bulk Insert Done 💫

@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<!-- saved from url=(0132)blob:https://4nlrlwr5fr8nsz03podd1h87orf4pyl96k4elacwqp6mgxlrsz-h828801762.scf.usercontent.goog/19f2d94a-628c-4e08-8e3c-2cb6e6a77c8c -->
+<html lang="en" class="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6ImI4Y2EzODU1OTU1ZmQ1MTMxOGFmNzI2ZTM0YzZjYWUzZmYyYWY4N2YiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIxNzY2NTUwMTAzMTMzNzgwODY0NSIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJkMjJkZjM0MzljYTQteWVhc3RfbW9kZWxfZGVja19kYXJrLmh0bWwtNjc2In0sImV4cCI6MTc2MzA1MjM5OSwiaWF0IjoxNzYzMDQ4Nzk5LCJhbGciOiJSUzI1NiJ9.MQGS5xYZPWrBcpBqUETo5OOac7IyR3jTDDGDLAlvm99HZoIu53UhJ0B4_eRVujG-W1r94SNvVHgwsZzpMSOq8m3SNsyUUgPRxT-I6BEvu9w4FQ7JMs0F1SY1fAGMJUdzTphbiLXULhL6kNuAb_-vQIwvtTFrMbilML8tm839QO6tkXf0PM4EsszCTxWqIZJhZ7kbOfTn7a4RBmY2utOK4WrASHrZi7ZoHXA5MpAmZHcpeVHu-ukFt_LOpKzTFZeddrGtWFc0t0vQPk42tUrSM1LV4CrBvFMgisQFk5QAWo6oRMaFV23z4S6L88tw50JSS_xBdiPf0eidgmQenPnbhw","d22df3439ca4-yeast_model_deck_dark.html-676")</script><script>'use strict';var h=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,d){if(a==Array.prototype||a==Object.prototype)return a;a[b]=d.value;return a};function l(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var d=a[b];if(d&&d.Math==Math)return d}throw Error("Cannot find global object");}var n=l(this);
+function p(a,b){if(b)a:{var d=n;a=a.split(".");for(var c=0;c<a.length-1;c++){var e=a[c];if(!(e in d))break a;d=d[e]}a=a[a.length-1];c=d[a];b=b(c);b!=c&&b!=null&&h(d,a,{configurable:!0,writable:!0,value:b})}}function r(a){function b(c){return a.next(c)}function d(c){return a.throw(c)}return new Promise(function(c,e){function f(g){g.done?c(g.value):Promise.resolve(g.value).then(b,d).then(f,e)}f(a.next())})}function t(a){return r(a())}
+p("Object.values",function(a){return a?a:function(b){var d=[],c;for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&d.push(b[c]);return d}});p("Array.prototype.includes",function(a){return a?a:function(b,d){var c=this;c instanceof String&&(c=String(c));var e=c.length;d=d||0;for(d<0&&(d=Math.max(d+e,0));d<e;d++){var f=c[d];if(f===b||Object.is(f,b))return!0}return!1}});/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+function u(a,b){const d=a.style;b.backgroundColor&&(d.backgroundColor=b.backgroundColor);b.width&&(d.width=`${b.width}px`);b.height&&(d.height=`${b.height}px`);const c=b.style;c!=null&&Object.keys(c).forEach(e=>{d[e]=c[e]})};var v=(()=>{let a=0;return()=>{a+=1;return`u${`0000${(Math.random()*1679616<<0).toString(36)}`.slice(-4)}${a}`}})();function w(a){const b=[];for(let d=0,c=a.length;d<c;d++)b.push(a[d]);return b}let x=null;function y(a={}){return x?x:a.l?x=a.l:x=w(window.getComputedStyle(document.documentElement))}function z(a,b){return(a=(a.ownerDocument.defaultView||window).getComputedStyle(a).getPropertyValue(b))?parseFloat(a.replace("px","")):0}
+function A(a,b={}){var d;if(!(d=b.width)){d=z(a,"border-left-width");var c=z(a,"border-right-width");d=a.clientWidth+d+c}(b=b.height)||(b=z(a,"border-top-width"),c=z(a,"border-bottom-width"),b=a.clientHeight+b+c);return{width:d,height:b}}function B(a){return new Promise((b,d)=>{const c=new Image;c.onload=()=>{c.decode().then(()=>{requestAnimationFrame(()=>b(c))})};c.onerror=d;c.crossOrigin="anonymous";c.decoding="async";c.src=a})}
+function C(a){return t(function*(){return Promise.resolve().then(()=>(new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b=>`data:image/svg+xml;charset=utf-8,${b}`)})}
+function D(a,b,d){return t(function*(){const c=document.createElementNS("http://www.w3.org/2000/svg","svg"),e=document.createElementNS("http://www.w3.org/2000/svg","foreignObject");c.setAttribute("width",`${b}`);c.setAttribute("height",`${d}`);c.setAttribute("viewBox",`0 0 ${b} ${d}`);e.setAttribute("width","100%");e.setAttribute("height","100%");e.setAttribute("x","0");e.setAttribute("y","0");e.setAttribute("externalResourcesRequired","true");c.appendChild(e);e.appendChild(a);return C(c)})}
+var E=(a,b)=>{if(a instanceof b)return!0;a=Object.getPrototypeOf(a);return a===null?!1:a.constructor.name===b.name||E(a,b)};function F(a,b){return y(b).map(d=>{const c=a.getPropertyValue(d),e=a.getPropertyPriority(d);return`${d}: ${c}${e?" !important":""};`}).join(" ")}
+function G(a,b,d,c){a=window.getComputedStyle(a,d);var e=a.getPropertyValue("content");if(e!==""&&e!=="none"){var f=v();try{b.className=`${b.className} ${f}`}catch(k){return}e=document.createElement("style");var g=e.appendChild;d=`.${f}:${d}`;a.cssText?(c=a.getPropertyValue("content"),c=`${a.cssText} content: '${c.replace(/'|"/g,"")}';`):c=F(a,c);g.call(e,document.createTextNode(`${d}{${c}}`));b.appendChild(e)}};function H(a){return a.search(/^(data:)/)!==-1}function I(a,b,d){return t(function*(){const c=yield fetch(a,b);if(c.status===404)throw Error(`Resource "${c.url}" not found`);const e=yield c.blob();return new Promise((f,g)=>{const k=new FileReader;k.onerror=g;k.onloadend=()=>{try{f(d({o:c,result:k.result}))}catch(m){g(m)}};k.readAsDataURL(e)})})}const J={};function K(a,b,d){let c=a.replace(/\?.*/,"");d&&(c=a);/ttf|otf|eot|woff2?/i.test(c)&&(c=c.replace(/.*\//,""));return b?`[${b}]${c}`:c}
+function L(a,b,d){return t(function*(){const c=K(a,b,d.C);if(J[c]!=null)return J[c];d.u&&(a+=(/\?/.test(a)?"&":"?")+(new Date).getTime());let e;try{const f=yield I(a,d.i,({o:g,result:k})=>{b||(b=g.headers.get("Content-Type")||"");return k.split(/,/)[1]});e=`data:${b};base64,${f}`}catch(f){e=d.B||""}return J[c]=e})};const M={P:"application/font-woff",R:"application/font-woff",N:"application/font-truetype",v:"application/vnd.ms-fontobject",H:"image/png",F:"image/jpeg",D:"image/jpeg",A:"image/gif",M:"image/tiff",L:"image/svg+xml",O:"image/webp"};function N(a){return(a=/\.([^./]*?)$/g.exec(a))?a[1]:""};function O(a){return t(function*(){const b=a.toDataURL();return b==="data:,"?a.cloneNode(!1):B(b)})}function aa(a,b){return t(function*(){if(a.currentSrc){var d=document.createElement("canvas");const c=d.getContext("2d");d.width=a.clientWidth;d.height=a.clientHeight;c==null||c.drawImage(a,0,0,d.width,d.height);d=d.toDataURL();return B(d)}d=a.poster;d=yield L(d,M[N(d).toLowerCase()]||"",b);return B(d)})}
+function ba(a,b){return t(function*(){try{let d;if(a==null?0:(d=a.contentDocument)==null?0:d.body)return yield P(a.contentDocument.body,b,!0)}catch(d){}return a.cloneNode(!1)})}function ca(a,b){return t(function*(){return E(a,HTMLCanvasElement)?O(a):E(a,HTMLVideoElement)?aa(a,b):E(a,HTMLIFrameElement)?ba(a,b):a.cloneNode(a.tagName!=null&&a.tagName.toUpperCase()==="SVG")})}
+function da(a,b,d){return t(function*(){if(b.tagName!=null&&b.tagName.toUpperCase()==="SVG")return b;let c=[];if(a.tagName!=null&&a.tagName.toUpperCase()==="SLOT"&&a.assignedNodes)c=w(a.assignedNodes());else{let e;if(E(a,HTMLIFrameElement)&&((e=a.contentDocument)==null?0:e.body))c=w(a.contentDocument.body.childNodes);else{let f;c=w(((f=a.shadowRoot)!=null?f:a).childNodes)}}if(c.length===0||E(a,HTMLVideoElement))return b;yield c.reduce((e,f)=>e.then(()=>P(f,d)).then(g=>{g&&b.appendChild(g)}),Promise.resolve());
+return b})}function ea(a,b,d){const c=b.style;if(c){var e=window.getComputedStyle(a);e.cssText?(c.cssText=e.cssText,c.transformOrigin=e.transformOrigin):y(d).forEach(f=>{let g=e.getPropertyValue(f);f==="font-size"&&g.endsWith("px")&&(g=`${Math.floor(parseFloat(g.substring(0,g.length-2)))-.1}px`);E(a,HTMLIFrameElement)&&f==="display"&&g==="inline"&&(g="block");f==="d"&&b.getAttribute("d")&&(g=`path(${b.getAttribute("d")})`);c.setProperty(f,g,e.getPropertyPriority(f))})}}
+function fa(a,b){E(a,HTMLSelectElement)&&(b=Array.from(b.children).find(d=>a.value===d.getAttribute("value")))&&b.setAttribute("selected","")}
+function ha(a,b){return t(function*(){var d=a.querySelectorAll?a.querySelectorAll("use"):[];if(d.length===0)return a;var c={};for(var e=0;e<d.length;e++){var f=d[e].getAttribute("xlink:href");if(f){const g=document.querySelector(f);a.querySelector(f)||!g||c[f]||(c[f]=yield P(g,b,!0))}}d=Object.values(c);if(d.length){c=document.createElementNS("http://www.w3.org/1999/xhtml","svg");c.setAttribute("xmlns","http://www.w3.org/1999/xhtml");c.style.position="absolute";c.style.width="0";c.style.height="0";
+c.style.overflow="hidden";c.style.display="none";e=document.createElementNS("http://www.w3.org/1999/xhtml","defs");c.appendChild(e);for(f=0;f<d.length;f++)e.appendChild(d[f]);a.appendChild(c)}return a})}
+function P(a,b,d){return t(function*(){return d||!b.filter||b.filter(a)?Promise.resolve(a).then(c=>ca(c,b)).then(c=>da(a,c,b)).then(c=>{E(c,Element)&&(ea(a,c,b),G(a,c,":before",b),G(a,c,":after",b),E(a,HTMLTextAreaElement)&&(c.textContent=a.value),E(a,HTMLInputElement)&&c.setAttribute("value",a.value),fa(a,c));return c}).then(c=>ha(c,b)):null})};const Q=/url\((['"]?)([^'"]+?)\1\)/g,ia=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,ja=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function ka(a){const b=[];a.replace(Q,(d,c,e)=>{b.push(e);return d});return b.filter(d=>!H(d))}
+function la(a,b,d,c){return t(function*(){try{const e=d?(new URL(b,d||void 0)).toString():b;let f;f=yield L(e,M[N(b).toLowerCase()]||"",c);return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1")})(['"]?\\))`,"g"),`$1${f}$3`)}catch(e){}return a})}function ma(a,{I:b}){return b?a.replace(ja,d=>{for(;;){const [c,,e]=ia.exec(d)||[],f=c,g=e;if(!g)return"";if(g===b)return`src: ${f};`}}):a}
+function R(a,b,d){return t(function*(){if(a.search(Q)===-1)return a;const c=ma(a,d);return ka(c).reduce((e,f)=>e.then(g=>la(g,f,b,d)),Promise.resolve(c))})};function S(a,b,d){return t(function*(){var c;const e=(c=b.style)==null?void 0:c.getPropertyValue(a);return e?(c=yield R(e,null,d),b.style.setProperty(a,c,b.style.getPropertyPriority(a)),!0):!1})}function na(a,b){return t(function*(){(yield S("background",a,b))||(yield S("background-image",a,b));(yield S("mask",a,b))||(yield S("-webkit-mask",a,b))||(yield S("mask-image",a,b))||(yield S("-webkit-mask-image",a,b))})}
+function oa(a,b){return t(function*(){const d=E(a,HTMLImageElement);if(d&&!H(a.src)||E(a,SVGImageElement)&&!H(a.href.baseVal)){var c=d?a.src:a.href.baseVal,e=yield L(c,M[N(c).toLowerCase()]||"",b);yield new Promise((f,g)=>{a.onload=f;a.onerror=b.m?(...k)=>{try{f(b.m(...k))}catch(m){g(m)}}:g;a.decode&&(a.decode=f);a.loading==="lazy"&&(a.loading="eager");d?(a.srcset="",a.src=e):a.href.baseVal=e})}})}
+function pa(a,b){return t(function*(){const d=w(a.childNodes).map(c=>T(c,b));yield Promise.all(d).then(()=>a)})}function T(a,b){return t(function*(){E(a,Element)&&(yield na(a,b),yield oa(a,b),yield pa(a,b))})};const U={};function V(a){return t(function*(){var b=U[a];if(b!=null)return b;b=yield(yield fetch(a)).text();b={url:a,cssText:b};return U[a]=b})}function W(a,b){return t(function*(){let d=a.cssText;const c=/url\(["']?([^"')]+)["']?\)/g,e=(d.match(/url\([^)]+\)/g)||[]).map(f=>t(function*(){let g=f.replace(c,"$1");g.startsWith("https://")||(g=(new URL(g,a.url)).href);return I(g,b.i,({result:k})=>{d=d.replace(f,`url(${k})`);return[f,k]})}));return Promise.all(e).then(()=>d)})}
+function X(a){if(a==null)return[];const b=[];a=a.replace(/(\/\*[\s\S]*?\*\/)/gi,"");for(var d=RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){var c=d.exec(a);if(c===null)break;b.push(c[0])}a=a.replace(d,"");d=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;for(c=RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){let e=d.exec(a);if(e===null)if(e=c.exec(a),e===null)break;else d.lastIndex=c.lastIndex;else c.lastIndex=
+d.lastIndex;b.push(e[0])}return b}
+function qa(a,b){return t(function*(){const d=[],c=[];a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach((f,g)=>{if(f.type===CSSRule.IMPORT_RULE){let k=g+1;f=V(f.href).then(m=>W(m,b)).then(m=>X(m).forEach(q=>{try{e.insertRule(q,q.startsWith("@import")?k+=1:e.cssRules.length)}catch(Da){}})).catch(()=>{});c.push(f)}})}catch(f){const g=a.find(k=>k.href==null)||document.styleSheets[0];e.href!=null&&c.push(V(e.href).then(k=>W(k,b)).then(k=>X(k).forEach(m=>{g.insertRule(m,g.cssRules.length)})).catch(()=>
+{}))}});return Promise.all(c).then(()=>{a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach(f=>{d.push(f)})}catch(f){}});return d})})}function ra(a){return a.filter(b=>b.type===CSSRule.FONT_FACE_RULE).filter(b=>b.style.getPropertyValue("src").search(Q)!==-1)}function sa(a,b){return t(function*(){if(a.ownerDocument==null)throw Error("Provided element is not within a Document");var d=w(a.ownerDocument.styleSheets);d=yield qa(d,b);return ra(d)})}
+function ta(a){function b(c){(c.style.fontFamily||getComputedStyle(c).fontFamily).split(",").forEach(e=>{d.add(e.trim().replace(/["']/g,""))});Array.from(c.children).forEach(e=>{e instanceof HTMLElement&&b(e)})}const d=new Set;b(a);return d}function ua(a,b){return t(function*(){const d=yield sa(a,b),c=ta(a);return(yield Promise.all(d.filter(e=>c.has(e.style.fontFamily.trim().replace(/["']/g,""))).map(e=>R(e.cssText,e.parentStyleSheet?e.parentStyleSheet.href:null,b)))).join("\n")})}
+function va(a,b){return t(function*(){const d=b.j!=null?b.j:b.K?null:yield ua(a,b);if(d){const c=document.createElement("style");c.appendChild(document.createTextNode(d));a.firstChild?a.insertBefore(c,a.firstChild):a.appendChild(c)}})};function wa(a,b={}){return t(function*(){const {width:d,height:c}=A(a,b),e=yield P(a,b,!0);yield va(e,b);yield T(e,b);u(e,b);return yield D(e,d,c)})}
+function xa(a,b={}){return t(function*(){const {width:d,height:c}=A(a,b);var e=yield wa(a,b);e=yield B(e);const f=document.createElement("canvas"),g=f.getContext("2d"),k=b.G||window.devicePixelRatio||1,m=b.h||d,q=b.g||c;f.width=m*k;f.height=q*k;!b.J&&(f.width>16384||f.height>16384)&&(f.width>16384&&f.height>16384?f.width>f.height?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384):f.width>16384?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=
+16384));f.style.width=`${m}`;f.style.height=`${q}`;b.backgroundColor&&(g.fillStyle=b.backgroundColor,g.fillRect(0,0,f.width,f.height));g.drawImage(e,0,0,f.width,f.height);return f})}function ya(a,b={}){return t(function*(){return(yield xa(a,b)).toDataURL()})};const za=["gemini.google.com","corp.google.com","proxy.googlers.com"];function Y(){return document.body.querySelectorAll('[class*="animate"]').length>0}function Z(a){return t(function*(){try{return yield ya(a,{h:a.offsetWidth,g:a.offsetHeight})}catch(d){var b=a.offsetHeight;const c=document.createElement("canvas");c.width=a.offsetWidth;c.height=b;return c.toDataURL("image/png")}})}
+function Aa(){return t(function*(){const a=document.body.offsetWidth,b=document.body.offsetHeight,d=document.body.cloneNode(!0);d.querySelectorAll('[class*="animate"]').forEach(c=>{c.classList.remove(...Array.from(c.classList).filter(e=>e.startsWith("animate")))});d.style.width=`${a}px`;d.style.height=`${b}px`;return d})}
+function Ba(a){return t(function*(){let b=document.body;if(Y()){var d=yield Aa();b=d;document.body.appendChild(d)}d=yield Z(b);Y()&&document.body.removeChild(b);window.parent.postMessage({type:"SEND_SCREENSHOT",image:d,topOffset:document.documentElement.scrollTop},a.origin)})}function Ca(a){return t(function*(){const b={type:"SEND_SCREENSHOT_FOR_DATA_VISUALIZATION",image:yield Z(document.body),topOffset:0};window.parent.postMessage(b,a.origin)})}
+window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includes(d))){var b=a.data;b&&(b.type==="MAKE_SCREENSHOT"&&(yield Ba(a)),b.type==="MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION"&&(yield Ca(a)))}}));
+</script><script>(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script>
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script>((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-2.5-flash-preview-09-2025","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-2.5-flash-image-preview","imageTransformModelName":"gemini-2.5-flash-image-preview","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"]})</script><script>(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeast Population Modeling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. THE SETUP */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111827; /* Dark page background */
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  padding: 20px 0;
+  place-items: center;
+  margin: 0;
+}
+
+.slide-container {
+  align-items: center;
+  background-color: #1e293b; /* New: Dark Slate Background */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  height: 720px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+}
+
+.slide-container>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. CONSISTENT TYPOGRAPHY */
+
+/* Headings Font */
+.slide-container h1,
+.slide-container h2,
+.slide-container h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  color: #a3e635; /* New: Lime Green Accent */
+}
+
+/* Body Text Font */
+.slide-container p,
+.slide-container li,
+.slide-container .subtitle {
+  font-family: "Lato", sans-serif;
+  color: #cbd5e1; /* New: Light Slate Grey */
+}
+
+/* Consistent Font Sizes */
+.slide-container h1 {
+  font-size: 80px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.slide-container .slide-title {
+  /* This is an h2 */
+  font-size: 52px;
+  font-weight: 700;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 40px;
+  color: #f8fafc; /* New: White/Light Grey */
+}
+
+.slide-container h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #a3e635; /* New: Lime Green Accent */
+}
+
+.slide-container p,
+.slide-container li {
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.slide-container .subtitle {
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 20px;
+  color: #cbd5e1; /* Light Slate Grey */
+}
+
+/* 3. LAYOUT DEFINITIONS */
+
+/* --- Title_Slide --- */
+.title-layout {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.title-layout h1 {
+    color: #a3e635; /* Lime Green */
+}
+
+/* --- Section_Title --- */
+.section-title-layout {
+  text-align: center;
+}
+.section-title-layout h2 {
+  font-size: 64px;
+  margin-bottom: 20px;
+  color: #f8fafc; /* White */
+}
+.section-title-layout hr {
+  border: none;
+  height: 5px;
+  width: 100px;
+  background-color: #a3e635; /* Lime Green */
+  margin: 30px auto;
+}
+.section-title-layout .subtitle {
+    color: #cbd5e1;
+}
+
+/* --- Image_Right_Text_Left --- */
+.content-area {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.content-area > div {
+  flex: 1;
+}
+
+.content-area ul {
+  list-style-position: outside;
+  padding-left: 30px;
+  margin: 0;
+}
+.content-area li {
+  margin-bottom: 15px;
+}
+
+.image-wrapper {
+  border: 1px solid #334155; /* New: Darker border */
+  border-radius: 12px;
+  height: 450px;
+  overflow: hidden;
+  width: 100%;
+  background-color: #334155; /* Dark bg for image */
+}
+
+.image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.9; /* Slightly muted image */
+}
+.content-area .image-wrapper img {
+  object-fit: contain;
+  opacity: 1.0;
+}
+
+
+/* --- Tiled_Text_With_Icons --- */
+.tiled-content {
+  align-items: stretch;
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.tile {
+  align-items: center;
+  background-color: #334155; /* New: Darker Tile BG */
+  border: 1px solid #475569;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+}
+
+.tile p {
+  color: #cbd5e1;
+}
+.tile h3 {
+  color: #f8fafc; /* White title in tile */
+}
+
+.tile .icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+.tile .icon.stable {
+  color: #a3e635; /* Lime Green */
+}
+.tile .icon.unstable {
+  color: #f87171; /* Red */
+}
+
+/* --- Two_Column_Tiled_Text --- */
+.two-column-tiled {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+  flex-grow: 1;
+}
+.two-column-tiled > div {
+  background-color: #334155; /* Darker Tile BG */
+  border: 1px solid #475569;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.two-column-tiled h3 {
+  font-size: 24px;
+  border-bottom: 2px solid #475569;
+  padding-bottom: 10px;
+}
+
+/* --- Quote --- */
+.quote-layout {
+  text-align: center;
+  width: 80%;
+}
+.quote-layout blockquote {
+  color: #f8fafc;
+  font-size: 36px;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  margin: 0 0 30px 0;
+  position: relative;
+  background-color: #334155;
+  border: 1px solid #475569;
+  border-radius: 12px;
+  padding: 40px;
+}
+.quote-layout blockquote::before {
+  color: #475569; /* Muted accent */
+  content: '“';
+  font-size: 100px;
+  line-height: 0;
+  position: absolute;
+  left: 10px;
+  top: 40px;
+}
+.quote-layout cite {
+  color: #cbd5e1;
+  font-size: 22px;
+  font-style: normal;
+}
+
+/* --- MathML Formula Styling --- */
+.formula-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f172a; /* Near-black */
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 1px solid #334155;
+}
+math {
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  color: #f8fafc;
+}
+
+/* 4. CHART STYLING */
+
+/* --- Area_Chart_For_Trends --- */
+.area-chart-container {
+  width: 90%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+.area-chart-svg {
+  height: auto;
+  overflow: visible;
+  width: 100%;
+}
+.area-chart-svg .grid {
+  stroke-width: 2;
+  stroke: #334155; /* Dark grid */
+  stroke-dasharray: 4 4;
+}
+.area-chart-svg .area-fill {
+  fill: url(#area-gradient);
+  stroke: none;
+}
+.area-chart-svg .line-stroke {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+  stroke: #38bdf8; /* New: Bright Blue */
+}
+.area-chart-svg .data-point {
+  fill: #1e293b;
+  stroke-width: 3;
+  stroke: #38bdf8;
+}
+.area-chart-svg .axis-labels,
+.area-chart-svg .data-labels {
+  fill: #cbd5e1;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+}
+.area-chart-svg .y-axis-labels {
+  text-anchor: end;
+}
+.area-chart-svg .x-axis-labels {
+  text-anchor: middle;
+}
+.chart-summary {
+  font-style: italic;
+  margin-top: 15px;
+  max-width: 90%;
+  text-align: center;
+  font-size: 18px;
+  color: #cbd5e1;
+}
+/* Horizontal reference line */
+.area-chart-svg .ref-line {
+  stroke-width: 3;
+  stroke: #a3e635; /* Lime Green */
+  stroke-dasharray: 6 6;
+}
+.area-chart-svg .ref-label {
+  fill: #a3e635;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+}
+
+/* --- Bar_Chart_For_Comparisons --- */
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.bar {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+
+.bar .label {
+  color: #cbd5e1;
+  flex: 0 0 200px;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: right;
+  font-family: "Lato", sans-serif;
+}
+
+.bar .bar-inner {
+  background-color: #334155;
+  border-radius: 8px;
+  flex-grow: 1;
+  height: 40px;
+  position: relative;
+}
+.bar .zero-line {
+  position: absolute;
+  left: 30%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #64748b;
+}
+
+.bar .bar-fill {
+  align-items: center;
+  border-radius: 8px;
+  color: #1e293b; /* Dark text on light bar */
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  height: 100%;
+  justify-content: flex-end;
+  padding-right: 15px;
+  position: absolute;
+}
+.bar-fill.positive {
+  background: linear-gradient(90deg, #bef264, #a3e635); /* Lime Green */
+  left: 30%;
+}
+.bar-fill.negative {
+  background: linear-gradient(90deg, #fca5a5, #f87171); /* Red */
+  color: #ffffff; /* White text on red bar */
+  right: 70%;
+  justify-content: flex-start;
+  padding-left: 15px;
+  padding-right: 0;
+}
+
+/* --- Q&A Slide --- */
+.qa-slide {
+    background-color: #0f172a; /* Near-black */
+}
+.qa-slide h1 {
+    color: #a3e635; /* Lime Green */
+}
+.qa-slide .subtitle {
+    color: #cbd5e1; /* Light Slate */
+}
+    </style>
+<style>
+  :where(.slide-attributions) {
+    padding: 60px;
+  }
+  .attribution-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .attribution-list__item {
+    align-items: center;
+    border-bottom: 1px solid #757575;
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 90px 1fr;
+    padding: 15px 0;
+  }
+  .attribution-list__item:last-child {
+    border-bottom: none;
+  }
+  .attribution-list__item .attribution__thumbnail {
+    height: 50px;
+    width: 90px;
+  }
+  .attribution__thumbnail .attribution__thumbnail__image {
+    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  .attribution__details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .attribution__details .attribution__raw-url {
+    color: inherit;
+    font-size: 13px;
+    margin: 0;
+    word-break: break-all;
+  }
+  .attribution__details .attribution__title {
+    color: inherit;
+    font-size: 16px;
+    margin: 0;
+  }
+  .attribution__details .attribution__title > .attribution__link {
+    color: #4f46e5;
+    text-decoration: none;
+  }
+</style><style>
+  /* The container that fills available space. It's the positioning context. */
+  #slideshow-holder {
+      position: relative;
+      flex-grow: 1; /* Replaces flex-grow Tailwind class for clarity */
+      width: 100%;
+      padding: 1rem; /* Replaces p-4 Tailwind class */
+  }
+
+  /* The element that is scaled and centered. */
+  #slideshow-wrapper {
+      width: 1280px;
+      height: 720px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+      transform: translate(-50%, -50%) scale(var(--scale-factor, 1));
+      transition: transform 0.3s ease-in-out;
+      /* Visual styles moved here from the holder */
+      border-radius: 0.5rem;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      overflow: hidden;
+  }
+
+  /* Update slide container styles */
+  .slide-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+  /* Make the active slide visible */
+  .slide-container.active {
+      opacity: 1;
+      pointer-events: auto;
+  }
+</style><script src="https://cdn.tailwindcss.com/3.4.17"></script><script>
+  tailwind.config = {
+    darkMode: 'class',
+    corePlugins: {
+      preflight: false,
+    },
+  }
+</script><style>*, ::before, ::after {--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x:  ;--tw-pan-y:  ;--tw-pinch-zoom:  ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position:  ;--tw-gradient-via-position:  ;--tw-gradient-to-position:  ;--tw-ordinal:  ;--tw-slashed-zero:  ;--tw-numeric-figure:  ;--tw-numeric-spacing:  ;--tw-numeric-fraction:  ;--tw-ring-inset:  ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / 0.5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur:  ;--tw-brightness:  ;--tw-contrast:  ;--tw-grayscale:  ;--tw-hue-rotate:  ;--tw-invert:  ;--tw-saturate:  ;--tw-sepia:  ;--tw-drop-shadow:  ;--tw-backdrop-blur:  ;--tw-backdrop-brightness:  ;--tw-backdrop-contrast:  ;--tw-backdrop-grayscale:  ;--tw-backdrop-hue-rotate:  ;--tw-backdrop-invert:  ;--tw-backdrop-opacity:  ;--tw-backdrop-saturate:  ;--tw-backdrop-sepia:  ;--tw-contain-size:  ;--tw-contain-layout:  ;--tw-contain-paint:  ;--tw-contain-style:  
+}::backdrop {--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x:  ;--tw-pan-y:  ;--tw-pinch-zoom:  ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position:  ;--tw-gradient-via-position:  ;--tw-gradient-to-position:  ;--tw-ordinal:  ;--tw-slashed-zero:  ;--tw-numeric-figure:  ;--tw-numeric-spacing:  ;--tw-numeric-fraction:  ;--tw-ring-inset:  ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / 0.5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur:  ;--tw-brightness:  ;--tw-contrast:  ;--tw-grayscale:  ;--tw-hue-rotate:  ;--tw-invert:  ;--tw-saturate:  ;--tw-sepia:  ;--tw-drop-shadow:  ;--tw-backdrop-blur:  ;--tw-backdrop-brightness:  ;--tw-backdrop-contrast:  ;--tw-backdrop-grayscale:  ;--tw-backdrop-hue-rotate:  ;--tw-backdrop-invert:  ;--tw-backdrop-opacity:  ;--tw-backdrop-saturate:  ;--tw-backdrop-sepia:  ;--tw-contain-size:  ;--tw-contain-layout:  ;--tw-contain-paint:  ;--tw-contain-style:  
+}.absolute {position: absolute
+}.relative {position: relative
+}.left-4 {left: 1rem
+}.right-4 {right: 1rem
+}.top-1\/2 {top: 50%
+}.top-4 {top: 1rem
+}.z-20 {z-index: 20
+}.flex {display: flex
+}.grid {display: grid
+}.hidden {display: none
+}.h-5 {height: 1.25rem
+}.h-6 {height: 1.5rem
+}.h-screen {height: 100vh
+}.w-5 {width: 1.25rem
+}.w-6 {width: 1.5rem
+}.w-full {width: 100%
+}.flex-shrink-0 {flex-shrink: 0
+}.-translate-y-1\/2 {--tw-translate-y: -50%;transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}.cursor-pointer {cursor: pointer
+}.flex-col {flex-direction: column
+}.items-center {align-items: center
+}.justify-center {justify-content: center
+}.space-x-2 > :not([hidden]) ~ :not([hidden]) {--tw-space-x-reverse: 0;margin-right: calc(0.5rem * var(--tw-space-x-reverse));margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))
+}.rounded-full {border-radius: 9999px
+}.rounded-md {border-radius: 0.375rem
+}.border-none {border-style: none
+}.bg-gray-100 {--tw-bg-opacity: 1;background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1))
+}.bg-white {--tw-bg-opacity: 1;background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+}.bg-white\/50 {background-color: rgb(255 255 255 / 0.5)
+}.p-2 {padding: 0.5rem
+}.p-4 {padding: 1rem
+}.font-sans {font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+}.text-sm {font-size: 0.875rem;line-height: 1.25rem
+}.font-medium {font-weight: 500
+}.leading-\[0\] {line-height: 0
+}.text-gray-600 {--tw-text-opacity: 1;color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+}.text-gray-700 {--tw-text-opacity: 1;color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+}.shadow-md {--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}.backdrop-blur-sm {--tw-backdrop-blur: blur(4px);-webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+}.transition-all {transition-property: all;transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);transition-duration: 150ms
+}.transition-colors {transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);transition-duration: 150ms
+}.duration-300 {transition-duration: 300ms
+}.hover\:bg-gray-100:hover {--tw-bg-opacity: 1;background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1))
+}.hover\:text-black:hover {--tw-text-opacity: 1;color: rgb(0 0 0 / var(--tw-text-opacity, 1))
+}.disabled\:cursor-not-allowed:disabled {cursor: not-allowed
+}.disabled\:opacity-50:disabled {opacity: 0.5
+}.dark\:bg-gray-800:is(.dark *) {--tw-bg-opacity: 1;background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1))
+}.dark\:bg-gray-800\/50:is(.dark *) {background-color: rgb(31 41 55 / 0.5)
+}.dark\:bg-gray-900:is(.dark *) {--tw-bg-opacity: 1;background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1))
+}.dark\:text-gray-300:is(.dark *) {--tw-text-opacity: 1;color: rgb(209 213 219 / var(--tw-text-opacity, 1))
+}.dark\:text-gray-400:is(.dark *) {--tw-text-opacity: 1;color: rgb(156 163 175 / var(--tw-text-opacity, 1))
+}.dark\:hover\:bg-gray-700:hover:is(.dark *) {--tw-bg-opacity: 1;background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1))
+}.dark\:hover\:text-white:hover:is(.dark *) {--tw-text-opacity: 1;color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+}</style></head>
+<body class="bg-gray-100 dark:bg-gray-900 flex flex-col h-screen transition-colors duration-300">
+
+<!-- Slide 1: Title_Slide -->
+
+
+<!-- Slide 2: Section_Title -->
+
+
+<!-- Slide 3: Image_Right_Text_Left (for the ODE) -->
+
+
+<!-- Slide 4: Two_Column_Tiled_Text (for the Solution) -->
+
+<button id="theme-toggle" class="absolute top-4 right-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-2 rounded-full shadow-md text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300 z-20 border-none leading-[0] cursor-pointer">
+    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    <svg id="theme-toggle-light-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zM5 10a1 1 0 01-1-1H3a1 1 0 110-2h1a1 1 0 011 1zm4.95-4.95a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+</button>
+
+<div id="nav-controls" class="relative flex-shrink-0 w-full flex justify-center items-center p-4">
+    <span id="slide-counter" class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 dark:text-gray-400 font-sans">Slide 9 of 13</span>
+    <div class="flex items-center space-x-2">
+        <button id="prev-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="next-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+</div>
+
+<div id="slideshow-holder"><div id="slideshow-wrapper" style="--scale-factor: 0.6083333333333333;"><div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>Modeling Yeast Population Growth</h1>
+        <p class="subtitle">An ODE Approach Following the Fish Population Model</p>
+    </div>
+</div><div class="slide-container" id="slide2">
+    <div class="section-title-layout">
+        <h2>Part 1</h2>
+        <hr>
+        <p class="subtitle">The Simple Logistic Model<br>(No Harvesting)</p>
+    </div>
+</div><div class="slide-container" id="slide3">
+    <h2 class="slide-title">Finding the Model (ODE)</h2>
+    <div class="content-area">
+        <div>
+            <!-- Text content area -->
+            <p>We start with the **Logistic Growth** model, which assumes growth is proportional to the current population but is limited by a carrying capacity.</p>
+            <ul>
+                <li><math><mi>Y(t)</mi></math> = Population at time <math><mi>t</mi></math></li>
+                <li><math><mi>r</mi></math> = Intrinsic Growth Rate (<b>0.67</b> hr⁻¹)</li>
+                <li><math><mi>K</mi></math> = Carrying Capacity (<b>600</b> units)</li>
+            </ul>
+            <div class="formula-container">
+                <math display="math">
+                    <mfrac>
+                        <mrow><mi>d</mi><mi>Y</mi></mrow>
+                        <mrow><mi>d</mi><mi>t</mi></mrow>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mi>r</mi><mi>Y</mi>
+                    <mo>(</mo>
+                    <mn>1</mn>
+                    <mo>−</mo>
+                    <mfrac>
+                        <mi>Y</mi>
+                        <mi>K</mi>
+                    </mfrac>
+                    <mo>)</mo>
+                </math>
+            </div>
+        </div>
+        <div>
+            <!-- Image content area -->
+            <div class="image-wrapper">
+                <img alt="Scientific illustration of Saccharomyces cerevisiae yeast cells dividing" src="https://cdn1.byjus.com/wp-content/uploads/2022/08/diagram-of-yeast-cell.png">
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide4">
+    <h2 class="slide-title">Finding the Solution Formula</h2>
+    <div class="content-area two-column-tiled">
+        <div>
+            <h3>The Differential Equation</h3>
+            <p>This equation defines the *rate of change* at any moment.</p>
+            <div class="formula-container">
+                <math display="math">
+                    <mfrac>
+                        <mrow><mi>d</mi><mi>Y</mi></mrow>
+                        <mrow><mi>d</mi><mi>t</mi></mrow>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mn>0.67</mn><mi>Y</mi>
+                    <mo>(</mo>
+                    <mn>1</mn>
+                    <mo>−</mo>
+                    <mfrac>
+                        <mi>Y</mi>
+                        <mn>600</mn>
+                    </mfrac>
+                    <mo>)</mo>
+                </math>
+            </div>
+        </div>
+        <div>
+            <h3>The Specific Solution</h3>
+            <p>Solving the ODE with <math><msub><mi>Y</mi><mn>0</mn></msub><mo>=</mo><mn>2</mn></math> gives the population <math><mi>Y(t)</mi></math> at any time <math><mi>t<p></p>
+            <div class="formula-container">
+                <math display="math">
+                    <mi>Y</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo>
+                    <mo>=</mo>
+                    <mfrac>
+                        <mn>600</mn>
+                        <mrow>
+                            <mn>1</mn>
+                            <mo>+</mo>
+                            <mn>299</mn>
+                            <msup><mi>e</mi><mrow><mo>−</mo><mn>0.67</mn><mi>t</mi></mrow></msup>
+                        </mrow>
+                    </mfrac>
+                </math>
+            </div>
+        
+    
+
+
+<!-- Slide 5: Area_Chart_For_Trends (for the S-Curve) -->
+
+
+<!-- Slide 6: Tiled_Text_With_Icons (for Fixed Points) -->
+
+
+<!-- Slide 7: Section_Title -->
+
+
+<!-- Slide 8: Two_Column_Tiled_Text -->
+
+
+<!-- Slide 9: Bar_Chart_For_Comparisons -->
+
+
+<!-- Slide 10: Image_Right_Text_Left (for the new curves) -->
+
+
+<!-- Slide 11: Quote -->
+
+
+<!-- Slide 12: Q&A -->
+
+
+
+</mi></math></p></div></div></div><div class="slide-container" id="slide5">
+    <h2 class="slide-title">Solution Curve (No Harvesting)</h2>
+    <div class="content-area" style="flex-direction: column; justify-content: center;">
+        <div class="area-chart-container">
+            <svg class="area-chart-svg" viewBox="0 0 1000 450">
+                <defs>
+                    <lineargradient id="area-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#38bdf8;" stop-opacity="0.4"></stop>
+                        <stop offset="100%" style="stop-color:#1e293b;" stop-opacity="0.1"></stop>
+                    </lineargradient>
+                </defs>
+
+                <!-- Grid Lines -->
+                <g class="grid">
+                    <line x1="0" y1="0" x2="0" y2="400"></line>
+                    <line x1="0" y1="400" x2="1000" y2="400"></line>
+                    <!-- Y-axis grid -->
+                    <line x1="0" y1="0" x2="1000" y2="0"></line>
+                    <line x1="0" y1="133" x2="1000" y2="133"></line>
+                    <line x1="0" y1="266" x2="1000" y2="266"></line>
+                </g>
+
+                <!-- Data: (0, 2), (2, 10), (4, 45), (6, 170), (8, 400), (10, 540), (12, 585), (14, 597), (16, 600) -->
+                <!-- Scaled Y: (400 - Y/1.5) -->
+                <path class="area-fill" d="M 0 398.7 L 125 393.3 L 250 370 L 375 286.7 L 500 133.3 L 625 40 L 750 10 L 875 2 L 1000 0 L 1000 400 L 0 400 Z"></path>
+                <polyline class="line-stroke" points="0 398.7, 125 393.3, 250 370, 375 286.7, 500 133.3, 625 40, 750 10, 875 2, 1000 0"></polyline>
+                
+                <!-- Reference Line for K=600 -->
+                <line class="ref-line" x1="0" y1="0" x2="1000" y2="0"></line>
+                <text class="ref-label" x="900" y="30">K = 600</text>
+
+                <!-- Axis Labels -->
+                <g class="axis-labels y-axis-labels">
+                    <text x="-15" y="0">600</text>
+                    <text x="-15" y="133">400</text>
+                    <text x="-15" y="266">200</text>
+                    <text x="-15" y="400">0</text>
+                </g>
+                <g class="axis-labels x-axis-labels">
+                    <text x="0" y="430">0</text>
+                    <text x="250" y="430">4</text>
+                    <text x="500" y="430">8</text>
+                    <text x="750" y="430">12</text>
+                    <text x="1000" y="430">16</text>
+                    <text x="500" y="460">Time (hours)</text>
+                </g>
+            </svg>
+        </div>
+        <p class="chart-summary">The population starts at Y=2 and grows in a classic S-shape, asymptotically approaching the stable carrying capacity of K=600.</p>
+    </div>
+</div><div class="slide-container" id="slide6">
+    <h2 class="slide-title">Interpreting Fixed Points (H=0)</h2>
+    <div class="content-area tiled-content">
+        <!-- Tile 1 -->
+        <div class="tile">
+            <div class="icon unstable"><i class="fas fa-times-circle"></i></div>
+            <h3>Y* = 0 (Unstable)</h3>
+            <p>This is the extinction fixed point. If the population is exactly 0, it stays 0. But if <math><mi>Y</mi><mo>&gt;</mo><mn>0</mn></math>, the population grows and moves *away* from this point. It is an unstable equilibrium.</p>
+        </div>
+        <!-- Tile 2 -->
+        <div class="tile">
+            <div class="icon stable"><i class="fas fa-check-circle"></i></div>
+            <h3>Y* = 600 (Stable)</h3>
+            <p>This is the carrying capacity. If the population starts below 600, it grows *toward* it. If it starts above 600, it would decline *toward* it. It is a stable equilibrium.</p>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide7">
+    <div class="section-title-layout">
+        <h2>Part 2</h2>
+        <hr>
+        <p class="subtitle">The Model with Harvesting<br>(Following the Fish Model steps)</p>
+    </div>
+</div><div class="slide-container" id="slide8">
+    <h2 class="slide-title">The Model with Harvesting (Dilution)</h2>
+    <div class="content-area two-column-tiled">
+        <div>
+            <h3>The New ODE</h3>
+            <p>We now introduce a constant "harvest" rate, <math><mi>H</mi></math>, just like in the fish model. For yeast, this could represent a constant dilution or removal.</p>
+            <div class="formula-container">
+                <math display="math">
+                    <mfrac>
+                        <mrow><mi>d</mi><mi>Y</mi></mrow>
+                        <mrow><mi>d</mi><mi>t</mi></mrow>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mi>r</mi><mi>Y</mi>
+                    <mo>(</mo>
+                    <mn>1</mn>
+                    <mo>−</mo>
+                    <mfrac>
+                        <mi>Y</mi>
+                        <mi>K</mi>
+                    </mfrac>
+                    <mo>)</mo>
+                    <mo>−</mo><mi>H</mi>
+                </math>
+            </div>
+        </div>
+        <div>
+            <h3>Graphing the Fixed Points</h3>
+            <p>The fixed points are where the growth rate equals the harvest rate. We plot <math><mi>d</mi><mi>Y</mi><mo>/</mo><mi>d</mi><mi>t</mi></math> vs. <math><mi>Y</mi></math>. This is the *key step* from the fish model.</p>
+            <div class="formula-container">
+                 <math display="math">
+                    <mfrac>
+                        <mrow><mi>d</mi><mi>Y</mi></mrow>
+                        <mrow><mi>d</mi><mi>t</mi></mrow>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mn>0.67</mn><mi>Y</mi>
+                    <mo>(</mo>
+                    <mn>1</mn>
+                    <mo>−</mo>
+                    <mfrac>
+                        <mi>Y</mi>
+                        <mn>600</mn>
+                    </mfrac>
+                    <mo>)</mo>
+                    <mo>−</mo><mn>50</mn>
+                </math>
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container active" id="slide9">
+    <h2 class="slide-title">Graphing New Fixed Points (H=50)</h2>
+    <div class="content-area" style="flex-direction: column; justify-content: center;">
+        <div class="chart-container">
+            <!-- Data from previous thought process -->
+            <div class="bar">
+                <div class="label">Y = 50</div>
+                <div class="bar-inner">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill negative" style="width: 20.6%;">–20.6</div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="label">Y = 94 (Threshold)</div>
+                <div class="bar-inner">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill negative" style="width: 0.1%;">0</div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="label">Y = 300</div>
+                <div class="bar-inner">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill positive" style="width: 50.7%;">+50.7</div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="label">Y = 506 (New K)</div>
+                <div class="bar-inner">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill positive" style="width: 0.1%;">0</div>
+                </div>
+            </div>
+             <div class="bar">
+                <div class="label">Y = 550</div>
+                <div class="bar-inner">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill negative" style="width: 13.9%;">–13.9</div>
+                </div>
+            </div>
+        </div>
+        <p class="chart-summary">The plot of Growth Rate (<math><mi>d</mi><mi>Y</mi><mo>/</mo><mi>d</mi><mi>t</mi></math>) vs. <math><mi>Y</mi></math> now crosses the zero line at two new points: an unstable point (Y≈94) and a stable point (Y≈506).</p>
+    </div>
+</div><div class="slide-container" id="slide10">
+    <h2 class="slide-title">Solution Curves with Harvesting</h2>
+    <div class="content-area">
+        <div>
+            <!-- Text content area -->
+            <h3>A Critical Threshold</h3>
+            <p>This is the "separating curves" phenomenon from the fish model. The fixed points have changed!</p>
+            <ul>
+                <li><b>Stable Point (Y* ≈ 506):</b> The new, lower carrying capacity. If <math><mi>Y</mi><mo>&gt;</mo><mn>94</mn></math>, the population will stabilize here.</li>
+                <li style="color: #f87171;"><b>Unstable Point (Y* ≈ 94):</b> This is the "Extinction Threshold."</li>
+                <li style="color: #f87171;"><b>If the population falls below this 94-unit threshold, the harvest rate is greater than the growth rate, and the population will crash to 0.</b></li>
+            </ul>
+        </div>
+        <div>
+            <!-- Image content area -->
+            <div class="image-wrapper">
+                <img alt="Abstract line graph showing population decline and extinction risk" src="https://pubs.usgs.gov/of/2023/1097/images/ofr20231097_fig04.png">
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide11">
+    <h2 class="slide-title">Interpretation &amp; Insights</h2>
+    <div class="content-area" style="justify-content: center;">
+        <div class="quote-layout">
+            <blockquote>
+                The model shows that harvesting not only *lowers* the final population (from 600 to 506) but also creates a 'point of no return' (at 94). This critical threshold is the 'extinction risk' shown in the fish model.
+            </blockquote>
+            <cite>— Model Interpretation</cite>
+        </div>
+    </div>
+</div><div class="slide-container qa-slide" id="slide12">
+    <div class="title-layout">
+        <h1>Questions?</h1>
+        <p class="subtitle">Thank You</p>
+    </div>
+</div><div class="slide-container slide-attributions" id="slide-attributions-1"><h2 class="slide-title">Image Sources</h2><div class="content-area"><ul class="attribution-list"><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxT292B2CSRLAiVxE_GpcoYWW0Y_exTsi_4mZWHHAdsl_bEOVNAUMjhjFEQ2XP" alt="Thumbnail for byjus.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://cdn1.byjus.com/wp-content/uploads/2022/08/diagram-of-yeast-cell.png</p><p class="attribution__title">Source: <a href="https://byjus.com/neet/yeast-diagram/" target="_blank" class="attribution__link">byjus.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR1Tni8qSoS-b6SqFPxSEmsTN7vvwi2h2W_d4C1SnFFb-womiXIuvpNCHQY3LZu" alt="Thumbnail for pubs.usgs.gov"></div><div class="attribution__details"><p class="attribution__raw-url">https://pubs.usgs.gov/of/2023/1097/images/ofr20231097_fig04.png</p><p class="attribution__title">Source: <a href="https://pubs.usgs.gov/publication/ofr20231097/full" target="_blank" class="attribution__link">pubs.usgs.gov</a></p></div></li></ul></div></div></div></div><script>
+/**
+ * Fetches an image blob using a method that attempts to bypass CORS issues
+ * by adding 'alr=yes' to the URL and following redirects.
+ */
+async function fetchFifeImageBlobUsingAlr(urlString) {
+  if (urlString.startsWith('blob:') || urlString.startsWith('data:')) {
+      throw new Error('Input URL is already a blob or data URL.');
+  }
+  let url = new URL(urlString, window.location.href);
+  url.searchParams.set('alr', 'yes');
+  for (let i = 0; i < 5; i++) {
+      const response = await fetch(url.toString(), { credentials: 'include' });
+      if (!response.ok) throw new Error(`Fetch received not OK response: ${response.status}`);
+      if (!response.headers.get('content-type')?.startsWith('text/plain')) {
+          const blob = await response.blob();
+          if (blob.size > 0 && blob.type.startsWith('image/')) return blob;
+          // This will now correctly throw an error for non-image types like fonts.
+          else throw new Error('Fetched blob is not a valid image.');
+      }
+      url = new URL(await response.text());
+  }
+  throw new Error('Exceeded maximum number of redirects.');
+}
+
+async function updateImageSourcesUsingAlr() {
+  // Get all img elements on the page.
+  const allImages = Array.from(document.querySelectorAll('img'));
+
+  // Use Promise.all to handle all updates concurrently for better performance.
+  await Promise.all(allImages.map(async (img) => {
+    // Only proceed if the img tag has a valid 'src' attribute with a
+    // googleusercontent URL.
+    if (img.src && img.src.includes('googleusercontent')) {
+      try {
+        const blob = await fetchFifeImageBlobUsingAlr(img.src);
+        // Create a new URL from the Blob and set it as the image's source.
+        img.src = URL.createObjectURL(blob);
+      } catch (error) {
+        // Do nothing.
+      }
+    }
+  }));
+}
+
+async function updateBackgroundImagesUsingAlr() {
+  // Find all elements with a googleusercontent background image.
+  const elementsToProcess = document.querySelectorAll('[style*="googleusercontent"]');
+  const urlRegex = /url\((['"]?)(https?:\/\/.*?googleusercontent.*?)\1\)/;
+
+  if (elementsToProcess.length > 0) {
+
+      const promises = Array.from(elementsToProcess).map(element => {
+          return new Promise(async (resolve) => {
+              const style = element.style.backgroundImage;
+              const match = style.match(urlRegex);
+
+              if (match && match[2]) {
+                  const originalUrl = match[2];
+                  try {
+                      const blob = await fetchFifeImageBlobUsingAlr(originalUrl);
+                      const blobUrl = URL.createObjectURL(blob);
+
+                      // Directly update the element's style property.
+                      const newBackgroundImage = style.replace(originalUrl, blobUrl);
+                      element.style.backgroundImage = newBackgroundImage;
+                  } catch (error) {
+                      // Do nothing.
+                  }
+              }
+              resolve();
+          });
+      });
+
+      // Wait for all images to be processed.
+      await Promise.all(promises);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    await Promise.all([
+      updateImageSourcesUsingAlr(),
+      updateBackgroundImagesUsingAlr()
+    ]);
+    initializeSlideshowUI();
+});
+
+// --- SLIDESHOW LOGIC ---
+function initializeSlideshowUI() {
+    const slides = document.querySelectorAll('.slide-container');
+    const prevButton = document.getElementById('prev-slide');
+    const nextButton = document.getElementById('next-slide');
+    const slideCounter = document.getElementById('slide-counter');
+    let currentSlide = 0;
+
+    function updateUI() {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
+        });
+        prevButton.disabled = currentSlide === 0;
+        nextButton.disabled = currentSlide === slides.length - 1;
+        slideCounter.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+    }
+
+    function showNextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            updateUI();
+        }
+    }
+
+    function showPrevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateUI();
+        }
+    }
+
+    nextButton.addEventListener('click', showNextSlide);
+    prevButton.addEventListener('click', showPrevSlide);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') showNextSlide();
+        else if (e.key === 'ArrowLeft') showPrevSlide();
+    });
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const htmlEl = document.documentElement;
+
+    function setTheme(isDark) {
+        htmlEl.classList.toggle('dark', isDark);
+        darkIcon.classList.toggle('hidden', isDark);
+        lightIcon.classList.toggle('hidden', !isDark);
+        localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+    }
+    const isDarkMode = localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setTheme(isDarkMode);
+    themeToggleBtn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
+
+    function updateScale() {
+        const baseWidth = 1280;
+        const baseHeight = 720;
+        const slideshowWrapper = document.getElementById('slideshow-wrapper');
+        const slideshowHolder = document.getElementById('slideshow-holder');
+
+        // The available space is the dimensions of the holder div.
+        const availableWidth = slideshowHolder.clientWidth;
+        const availableHeight = slideshowHolder.clientHeight;
+
+        // Calculate the scale ratio based on both width and height
+        const scaleX = availableWidth / baseWidth;
+        const scaleY = availableHeight / baseHeight;
+
+        // Use the smaller of the two ratios to ensure it fits
+        const finalScale = Math.min(scaleX, scaleY);
+
+        slideshowWrapper.style.setProperty('--scale-factor', finalScale);
+    }
+
+    updateUI();
+    updateScale();
+    window.addEventListener('resize', updateScale);
+}
+</script></body></html>
