@@ -32,6 +32,7 @@ fs // This is assigned to a var., bec. in forEach it process the db object itsel
   .forEach(file => { //⭐ Passes the datatypes which is the same parameter in the class 'factory' function.
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes); 
     db[model.name] = model;
+     // In the 1st iteration, file = ayatModel.js, the model returned is Ayat, so db['Ayat'] = Ayat
   });
 
 Object.keys(db).forEach(modelName => {

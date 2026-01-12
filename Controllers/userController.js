@@ -6,28 +6,28 @@ const {asyncErHandler} = require('./GlobalErrorHandler.js')
 
 exports.displayAll = asyncErHandler(async(req,res) =>{
     const users = await User.findAll()
+
+
+    console.log('users:', users)
     res.status(200).json({
         status:'success',
+        message:users.length == 0 ? "No Users Yet" : undefined,
         length:users.length,
         data:users
     })
     
-    if(!users){
-        res.status(500).json({
-            status:'error',
-            message:`Error`
-        })
-    }
 })
 
 exports.displayById = asyncErHandler(async(req,res) =>{
-    const user = await User.findOne({where: {uuid:req.params.uuid}})
+    const user = await User.findOne({where: {uuid:req.params.uuid},raw:true})
+    console.log('user:',user)
     if(!user){
         return res.status(404).json({
             status:'fail',
             message:"No User found with this ID"
         })
     }
+    console.log('user:',user)
     res.status(200).json({
         status:'success',
         data:user
@@ -44,9 +44,13 @@ exports.createUser = asyncErHandler(async(req,res) =>{
             data:user
         })
     }catch(err){
+        //Instead of returning 'SequelizeValidationError: Validation error: ...'
+        //⭐ It just returns the error like 'Passwords do not match' or 'Email is required'
+        console.log(err.errors[0].message)
+
         res.status(500).json({
             status:'error',
-            message:`Error: ${err}`
+            message:`Error: ${err.errors[0].message}`
         })
     }
 })
@@ -66,7 +70,6 @@ exports.updateById = asyncErHandler(async(req,res)=>{
     // user.role = role
     // user.email = email
     await user.save()
-    await user.save()
     res.status(200).json({
         status:'success',
         data:user        
@@ -75,15 +78,17 @@ exports.updateById = asyncErHandler(async(req,res)=>{
 
 exports.deleteById = asyncErHandler(async(req,res) =>{
     const user = await User.findOne({where:{uuid:req.params.uuid}})
-    await user.destroy()
     if(!user){
         return res.status(404).json({
             status:'fail',
             message:'No User was found with this ID'
         })
     }
+    let deletedUser = user
+    await user.destroy()
     res.status(200).json({
         status:'success',
-        data:user
+        data:deletedUser
     })
 })
+

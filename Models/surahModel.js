@@ -6,7 +6,7 @@ module.exports = (sequelize, Datatypes) =>{
         // Associaions, instance methods...
         static associate({Ayah}){ // 1-M
             this.hasMany(Ayah,{foreignKey: "surahId"})
-        }// The reference arrow is from aya to surah, which means the foreign key is in surah
+        }// The reference arrow is from aya to surah, which means the foreign key is in ayah
         // So it's mentioned in both
     }
 
@@ -21,7 +21,8 @@ module.exports = (sequelize, Datatypes) =>{
             allowNull:false,
             validate:{
                 notNull:{msg:'Surah Name is required...'}
-            }
+            },
+            unique:true
         },
         // ayat:{
         //     type:Datatypes.ARRAY(Datatypes.INTEGER),

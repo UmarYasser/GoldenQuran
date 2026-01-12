@@ -1,6 +1,7 @@
 const {Ayah} = require('./../Models')
 const {asyncErHandler} = require("./GlobalErrorHandler")
 const { Op, Sequelize } = require('sequelize')
+const qURL = 'http://api.alquran.cloud/v1'
 // const CustomError = require('./../Utils/CustomError')
 
 // Use CDN Endpoints instead of direct API calls, [FROM Quran API]
@@ -18,17 +19,20 @@ exports.createAyah =  asyncErHandler(async(req,res) =>{
     })
 })
 
+//🔖API
 exports.getAllAyat = asyncErHandler(async(req,res)=>{
 
     const ayat = await Ayah.findAll({
         order:[['surahId','ASC'],['ayahNumber','ASC']]
     })
+
     res.status(200).json({
         status:'success',
         ayat
     })
 })
 
+//🔖API
 // Request ayah, return all ayat in the that page
 exports.getAyahPage = asyncErHandler(async(req,res) =>{
     // 2 things should be passed, surahID and ayahNumber
@@ -45,32 +49,73 @@ exports.getAyahPage = asyncErHandler(async(req,res) =>{
 
     console.log('sID',sID);
     console.log('aID',aID);
-    const ayah = await Ayah.findOne({where: {surahId:sID, ayahNumber:aID}})
-    if(!ayah){
-        const surah = await Ayah.sequelize.models.Surah.findByPk(sID)
-        if(surah.ayatCount < aID){
-            return res.status(404).json({
-                status:'fail',
-                message:"This ayah isn't found"
-            })
-        }
-            
-    }
-    console.log('ayah',ayah.dataValues);
+    // const ayah = await Ayah.findOne({where: {surahId:sID, ayahNumber:aID}})
 
-    const ayasInPage = await Ayah.findAll({
-        where:{pageNumber:ayah.pageNumber},
-        order:[ ['surahId','ASC'], ['ayahNumber','ASC']]
-    })
+    const response = await fetch(`${qURL}/ayah/${sID}:${aID}`)
+    const result = await response.json()
+    // if(!result){
+
+    // }
+    // if(!ayah){
+    //     const surah = await Ayah.sequelize.models.Surah.findByPk(sID)
+    //     if(surah.ayatCount < aID){
+    //         return res.status(404).json({
+    //             status:'fail',
+    //             message:"This ayah isn't found"
+    //         })
+    //     }
+            
+    // }
+    // console.log('ayah',ayah.dataValues);
+
+    // const ayasInPage = await Ayah.findAll({
+    //     where:{pageNumber:ayah.pageNumber},
+    //     order:[ ['surahId','ASC'], ['ayahNumber','ASC']]
+    // })
     
     res.status(200).json({
         status:'success',
-        ayasInPage,
-        pageNumber: ayah.pageNumber
+        // ayasInPage,
+        // pageNumber: ayah.pageNumber,
+        APIresult:result
     })
+    //👇Result from the API
+    /*"APIresult": {
+        "code": 200,
+        "status": "OK",
+        "data": {
+            "number": 6, // const text = APIresult.data.text
+            "text": "Guide us the straight way.",
+            "edition": {
+                "identifier": "en.asad",
+                "language": "en",
+                "name": "Asad",
+                "englishName": "Muhammad Asad",
+                "format": "text",
+                "type": "translation",
+                "direction": "ltr"
+            },
+            "surah": {
+                "number": 1,
+                "name": "سُورَةُ ٱلْفَاتِحَةِ",
+                "englishName": "Al-Faatiha",
+                "englishNameTranslation": "The Opening",
+                "numberOfAyahs": 7,
+                "revelationType": "Meccan"
+            },
+            "numberInSurah": 6,
+            "juz": 1,
+            "manzil": 1,
+            "page": 1,
+            "ruku": 1,
+            "hizbQuarter": 1,
+            "sajda": false
+        }
+    } */
 })
 
-// Request Page, return all the ayat in that page
+//🔖API
+// Request Page, return the first ayah in that page
 exports.getPageAyah = asyncErHandler( async(req,res) => {
     // Request URL: /GQ/page/5
     // Request URL: /GQ/page/:page
@@ -94,6 +139,46 @@ exports.getPageAyah = asyncErHandler( async(req,res) => {
         pageNumber: firAyah.pageNumber
     })
 
+})
+
+//🔖API
+exports.searchAyah = asyncErHandler( async(req,res)=>{
+    const query = req.query.q
+    console.log('query',query);
+    //Format text to temove tashkeel:
+    let formattedText = Ayah.sequelize.fn('regexp_replace', Ayah.sequelize.col('text'), 'ٱ', 'ا', 'g')
+    formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, 'ٰ', 'ا', 'g')
+    formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[أآإ]', 'ا', 'g' )
+    formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[ة]', 'ه', 'g')
+    formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[\u064B-\u0652\u0671\u06F0-\u06F9]', '', 'g') //tashkeel
+    const ayat = await Ayah.findAll({
+        where: Ayah.sequelize.where(formattedText, 'LIKE', `%${query}%`),
+        attributes:['id','text','ayahNumber','surahId'],
+        // limit:15, / Maybe...
+        include:{
+            model: Ayah.sequelize.models.Surah,
+            as: 'surah',
+            attributes:['name'],
+            // where:{
+            //     id: Ayah.sequelize.col('Ayah.surahId')
+            // }
+            // It should know what column to link with => no where clause
+        },
+        order:[['surahId','ASC'],['ayahNumber','ASC']]
+    })
+
+    if(!ayat){
+        return res.status(404).json({
+            message:'fail',
+            message:'No Result found'
+        })
+    }
+
+    res.status(200).json({
+        status:'success',
+        length: ayat.length,
+        ayat
+    })
 })
 
 
@@ -178,7 +263,7 @@ exports.bulkCreateAyah = async(req,res)=>{
         console.log('ayahArray#2',ayahArray)
         console.log('ayahObj',arrayObj)
         
-        const ayatDB = await Ayah.bulkCreate(arrayObj)
+        const ayatDB = await Ayah.bulkCreate(arrayObj,{validate:true, ignoreDuplicates:true})
         console.log('ayatDB', ayatDB)
         
         res.status(201).json({
@@ -192,7 +277,7 @@ exports.bulkCreateAyah = async(req,res)=>{
 
 exports.bulkPageAssign = asyncErHandler(async(req,res)=>{
     // url: /bulkPageAss/:pageNo in req.params
-    // url: /bulkPageAss/1/1_5 in req.params
+    // url: /bulkPageAss/1
     // Req.body: {surahId: 1, ayat: 1_5} 
     const pageNo =  +req.params.pageNo // 1
     const firAyah =  +req.body.ayat.split('_')[0] // 1
@@ -241,6 +326,7 @@ exports.bulkPageAssign = asyncErHandler(async(req,res)=>{
     })
 })
 
+//🔖API
 exports.ayahQuiz = asyncErHandler(async(req,res)=>{
     // Get random ayah from DB
     const randomAyah = await Ayah.findOne({
@@ -270,20 +356,10 @@ exports.ayahQuiz = asyncErHandler(async(req,res)=>{
 
 })
 
+
+
+//🔖 Pass-through Methods => Called firectly from the front-end
+// => Get Audio for Ayah/Surah from CDN
+
 // Problem Till Fajr: Make the ayahCounter get the inital number from the first ayah number it finds
 // Ex : الٓمٓ (1) ذَٰلِكَ ٱلۡكِتَٰبُ... ==> The counter should start from 1✅✅
-
-
-
-/* function printpyramind(n){
-     for(let i =1; i<=n;i++){
-              let spaces='';
-        fr(let s=0; s < n-i;s++){
-        spaces +=" "
-        }
-        let stars="";     
-        for(let st=0;st<2*i-1;st++){ stars+='*'}      
-        console.log (spaces + stars)      } 
-        }
-        printpyramind(4)
-         */

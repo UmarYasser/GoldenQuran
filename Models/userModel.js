@@ -9,9 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Post}) { // relationships
+    static associate({Post,Tracker}) { // relationships
       // define association here
       this.hasMany(Post,{foreignKey:'userId'})
+      this.hasMany(Tracker,{foreignKey:'userId', as:'tracker'})
     }
 
     async comparePassword(enteredPass,passDB){
@@ -27,17 +28,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull:false,
+      validate:{
+        notNull:{msg:"UUID is required.."}
+      }
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate:{
+        notNull:{msg:"User name is required.."}
+      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate:{
-        notNull:{msg:'Email is required'}
-      }
+        notNull:{msg:'Email is required'},
+        isEmail: {msg:'Enter a valid Email!'}
+      },
+      unique:true
     },
     password:{
       type:DataTypes.STRING,
@@ -58,6 +67,11 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    streak:{
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
     role: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -65,6 +79,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     changePasswordAt:{
       type: DataTypes.DATE      
+    },
+    streak:{
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     sequelize: sequelize, // ⭐Must pass the sequelize connection (1st para. in the factory fn)
@@ -76,7 +95,6 @@ module.exports = (sequelize, DataTypes) => {
         if(user.password){
           const salt = await bcrypt.genSalt(10)
           user.password = await bcrypt.hash(user.password,salt)
-          console.log('Salt',salt,'Hashed',user.password)
         }
       }
     }

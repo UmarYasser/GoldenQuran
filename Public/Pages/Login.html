@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn Page</title>
+    <link rel="stylesheet" href="./../Stylesheets/Login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="./../img/favicon.png">
+</head>
+<body>
+    <div class="circle"></div>
+    <!-- <h3 id="title"><u> <i class="fa-solid fa-dumbbell fa-xl"></i> Umar's Diet Tracker </u></h3> -->
+    <div class="container">
+        <div id="first">
+            <div id="resp" style="display: inline;position: absolute;"></div>
+            <form id="logIn" method="post">
+                <h2 style="color:#096B68;text-wrap: nowrap;" class="typeWriter1">
+                    <i class="fa-solid fa-star"></i>
+                    Hello, Friend.</h2>
+                <p id="ifForgetten"></p>
+                <div class="li">
+                        <!-- <label>Enter Email</label> -->
+
+                        <i class="fa-solid fa-envelope fa-xl" style="color:#096B68;"></i>
+                        <input name="email" id='email' type="email" placeholder="Email" required>
+                    </div>
+                    <div class="li">
+                        <!-- <label> Password</label> -->
+                        <i class="fa-solid fa-lock-open fa-xl" style="color:#096B68;" hidden></i>
+                        <i id="forgotQues" class="fa-solid fa-lock fa-xl" style="color:#096B68;display: none;" ></i>
+                        <input id="password" name="password" type="password" placeholder="Password" required>
+                        <a id="showPassword" href="#"><i class="fa-solid fa-eye fa-2xl"></i> </a>
+                    </div>
+                    <div style="align-self: flex-start;">
+                        <a id="forgotPassword" href="#">
+                        <i class="fa-solid fa-question fa-xl" style="color:#096B68"></i>
+                            Forgot Your Password?</a>
+                    </div>
+                    <button type="submit" id="LogInBtn">Log In</button>
+                    <a id="haveAccount" href="SignUp.html" style="font-size:1.2rem;text-wrap: nowrap;"><i class="fa-solid fa-plus fa-xl"></i>Don't have an account?</a>
+            </form>
+            
+        </div>
+        <div id="second">
+            <h2 >Glad to see You!</h2>
+            <p style="font-size:1.2em">Welcome back, healthy individual.
+                <i class="fa-solid fa-dumbbell fa-xl"></i>
+                <i class="fa-solid fa-bowl-food fa-xl"></i>
+            </p>
+        </div>
+    </div>
+    <button id="google"> <img id="googleLogo" width="30px" src="./../img/google.png"><pre >Log In Using Google</pre></button>
+    <p id="resMessage" style="color:#096B68;display:block;font-size: 1.2rem;text-align: center; margin:5px" >.<i class="fa-solid fa-star fa-xl" style="margin:5px"></i>.</p>
+    <script src="./../Scripts/LoggingIn.js"></script>
+</body>
+</html>

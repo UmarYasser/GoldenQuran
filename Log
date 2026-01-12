@@ -15,3 +15,12 @@ Same must be done to Juz assignment
 
 
 11/21 => Tafseer CRUDs & Bulk Insert Done 💫
+
+
+11/29 => Transitioned to an external API 'AlQuran' that includes (Surahs, Ayat,Tafseers)
+
+To-do: User model Integration, 
+
+12/2 => Added ALL Surahs with Ayat💫💫`
+🧑🛠️ **Architectural Decisions**: _Back-end Focused LinkedIn Video!_
+Front-end is optional ❌-- Showcase the postman collection -- Database Diagram -- Storytell architectural decisions in the README ( local DB vs External API )

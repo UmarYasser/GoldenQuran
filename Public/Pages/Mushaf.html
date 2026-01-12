@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushaf Page</title>
+    <link rel="stylesheet" href="../Stylesheets/Mushaf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="menu" class="arabicText">
+        <div id="surahSearch" class="fieldOuter">
+            <p class="fieldP">السورة</p>
+            <div id="surahName" class="fieldInner">
+                <p id="surah">البقرة</p>
+                <i class="fa-solid fa-circle-chevron-down" style="cursor:pointer" id="selSurah"></i>
+                <div id="surahMenu" class="menus"> <!-- To be Injected from the JS-->
+                </div>
+            </div>
+        </div>
+
+        <div id="ayahSearch" class="fieldOuter">
+            <p class="fieldP">الآية</p>
+            <div id="ayah" class="fieldInner">
+                <p id="ayahNumber">100</p>
+                <i class="fa-solid fa-circle-chevron-down" style="cursor:pointer"></i>
+                <div id="ayahMenu" class="menus"> 
+                    <div id="ayahMneuBtn" class="menuBtn"> 1</div>
+                    <div id="ayahMneuBtn" class="menuBtn"> 2</div>
+                    <div id="ayahMneuBtn" class="menuBtn"> 3</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pageSearch" class="fieldOuter">
+            <p class="fieldP" >الصفحة</p>
+            <input type="number" id="pageNumber" min="1" max="604" class="fieldInner">
+
+        </div>
+
+        <div id="juzSearch" class="fieldOuter">
+            <p class="fieldP">الجزء</p>
+            <input type="number" id="juzNumber" min="1" max="30" class="fieldInner">
+        </div>
+
+        <div id="textSearch" class="fieldOuter">
+            <p class="fieldP">بحث</p>
+            <input type="text" id="liveSearch" placeholder="ابحث بالآية...">
+        </div>
+
+        <div id="recite" class="fieldOuter">
+            <i class="fa-solid fa-headset"></i>
+        </div>
+
+        <div id="tafseer" class="fieldOuter">
+                التفسير الميسر للصفحة:
+        </div>
+
+        <div id="ayahQuiz" class="fieldOuter">
+            <span style="text-align:right">
+                Ayah Quiz
+                <i class="fa-solid fa-circle-question"></i>
+            </span>
+        </div>
+
+        <div id="stats" class="fieldOuter">
+            <span style="text-align:right">
+                إحصائيات
+                <i class="fa-solid fa-chart-line"></i> 
+            </span>
+        </div>
+    </div>
+    <!-- Nav Bar -->
+    <!-- --------------------------------  -->
+    <div id="bookCon">
+        <div id="pageLfCon">
+            <img id="pageLf">
+            <div id="nextPageBtn"><i class="fa-solid fa-circle-left fa-2xl"></i></div>
+        </div>
+        
+        <div id="pageRtCon">
+            <img id="pageRt">
+            <div id="prevPageBtn"><i class="fa-solid fa-circle-right fa-2xl"></i></div>
+        </div>
+
+        
+    </div>
+
+
+    <script src="../Scripts/Mushaf.js"></script>
+</body>
+</html>

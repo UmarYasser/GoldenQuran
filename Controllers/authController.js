@@ -4,51 +4,62 @@ const jwt = require("jsonwebtoken")
 const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 const util = require('util')
+const dotenv =require('dotenv')
+dotenv.config({path:'./config.env'})
 
 const signToken = (ID) =>{
     return jwt.sign({id:ID},process.env.SECRET_STR)
 }
 
-exports.signUp = asyncErHandler(async(req,res)=>{
-    const {email,password} = req.body
-    
-    
-    
-    
-    if(await User.findOne({where:{email:email}})){
-        console.log('Duplicate Email')
-        return res.status(400).json({
+exports.signUp = async(req,res)=>{
+    const {email} = req.body
+    try{
+
+        if(await User.findOne({where:{email}})){
+                console.log('Duplicate Email')
+                return res.status(400).json({
+                    status:'fail',
+                    message:"This email is already taken"
+            })
+        }
+
+        console.log(`req.body: ${req.body}`,req.body)
+        
+        const user = await User.create(req.body)
+        const token = signToken(user.uuid)
+
+        const cookieOptions = {
+            httpOnly:true,
+            sameSite:'strict',
+            secure: true,
+            maxAge: 24*60*60*1000
+        }
+        res.cookie('jwt',token,cookieOptions)
+        console.log('jwt:',token)
+        res.status(200).json({
+            status:'success',
+            user,
+            token: process.env.NODE_ENV =='development' ? token : 'token?'
+        })
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({
             status:'fail',
-            message:"This email is already taken"
+            message:e.message
         })
     }
-    
-    const user = await User.create(req.body)
-    const token = signToken(user.uuid)
-
-    const cookieOptions = {
-        httpOnly:true,
-        sameSite:'strict',
-        secure: true,
-        maxAge: 24*60*60*1000
-    }
-    res.cookie('jwt',token,cookieOptions)
-
-    res.status(200).json({
-        status:'success',
-        user
-    })
-})
+}
 
 exports.logIn = asyncErHandler(async(req,res)=>{
     const {email,password} = req.body
-    const user = await User.findOne({where:{email:email}, logging:console.log})
-    console.log(user)
+
+    // Don't pass the password as it is, for the one in db is encrypted while this isn't.
+    const user = await User.findOne({where:{email/*,password:password*/}})
     //Compare Password with instance method
     if(!user){
         return res.status(404).json({
             status:'fail',
-            message:'No user with email was found'
+            message:'Incorrect email or password'
         })
     }
     
@@ -76,23 +87,23 @@ exports.logIn = asyncErHandler(async(req,res)=>{
     res.status(201).json({
         status:'success',
         message:'Siginning Up Successfully',
-        data
+        token: process.env.NODE_ENV =='development' ? token : 'token?'
     })
 })
 
 exports.protect = asyncErHandler(async(req,res,next)=>{
     const token = req.cookies.jwt
+    
     if(!token){
         return res.status(401).json({
             status:'fail',
             message:"Invaild Token"
         })
     }
-    const decodedToken = util.promisify(jwt.verify)(token,process.env.SECRET_STR)
-
-    const user = await User.findOne({where:{uuid:decodedToken._id},
-        attributes:{exclude:['password']}})
-
+    const decodedToken = await util.promisify(jwt.verify)(token,process.env.SECRET_STR)
+    const user = await User.findOne({where:{uuid:decodedToken.id},
+        attributes:{exclude:['password']}, raw:true})
+    
     if(!user){
         return res.status(401).json({
             status:'fail',

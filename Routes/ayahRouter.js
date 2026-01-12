@@ -2,14 +2,16 @@ const authCon = require("./../Controllers/authController")
 const ayahCon = require("./../Controllers/ayahController")
 const router = require('express').Router()
 
-router.route('/createAyah')
-    .post(/*authCon.protect,*/ ayahCon.createAyah)
-router.route('/getAllAyat').get(ayahCon.getAllAyat)
+router.post('/createAyah',ayahCon.createAyah)
+router.post('/bulkCreate/:surahId',ayahCon.bulkCreateAyah)
+
+router.get('/getAllAyat',ayahCon.getAllAyat)
 router.get('/getAyahPage', ayahCon.getAyahPage)
-router.delete('/deleteAyah/:surahId/:ayahNumber',ayahCon.deleteAyah)
+router.get('/liveSearch',ayahCon.searchAyah)
+router.get('/ayahQuiz',ayahCon.ayahQuiz)
+
+router.patch('/bulkPageAssign/:pageNo',ayahCon.bulkPageAssign)
 router.patch('/editAyah/:surahId/:ayahNumber',ayahCon.editAyah)
 
-router.route('/bulkCreate/:surahId').post(ayahCon.bulkCreateAyah)
-router.route('/bulkPageAssign/:pageNo').patch(ayahCon.bulkPageAssign)
-router.route('/ayahQuiz').get(ayahCon.ayahQuiz)
+router.delete('/deleteAyah/:surahId/:ayahNumber',ayahCon.deleteAyah)
 module.exports = router

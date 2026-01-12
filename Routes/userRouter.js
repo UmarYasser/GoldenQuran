@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const userCon = require('./../Controllers/userController')
+const userCon = require('./../Controllers/userController.js')
 
 
 router.route('/displayAll').get(/*authCon.protect,*/userCon.displayAll)

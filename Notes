@@ -1,0 +1,21 @@
+In assocications, you must make aliases, to be called like this:
+this.belongsTo(Surah,      {foreignKey:'surahId', **as:'surah'**})
+include:{
+    model: Ayah.sequelize.models.Surah,
+   **as:'surah'**
+}
+⚠️If not: Surah is associated to Ayah using an alias. You must use the 'as' keyword to specify the alias within your include statement.
+
+
+In migration, don't use models names, use only table names because it's at db level, espically in
+**refernces:{ model: *'TABLENAME'*}**
+
+**Composite Keys**: Tracker model must have a unique _combination_ of userId and date; in the 2nd object of model.init => indexes:[ { type:unique, fields:['userId','date'] } ]👌✨
+
+userId_unique_constraint
+
+**Associations** 
+hasOne - "One other has a foreign key pointing to me" => 1-M
+hasMany - "Others have foreign keys pointing to me" => 1-M
+belongsTo - "I have the foreign key pointing to another" => M-1
+belongsToMany - "Many-to-many through a junction table" => M-M

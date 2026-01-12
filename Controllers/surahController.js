@@ -1,6 +1,6 @@
 const {Surah} = require('../Models');
 const {asyncErHandler} = require("./../Controllers/GlobalErrorHandler")
-
+const {Op} = require('sequelize')
 
 async function ayahConvert(ayah){
     // const surahs = await Surah.findAll({
@@ -57,12 +57,31 @@ async function ayahConvert(ayah){
     console.log(`⭐The Ayah ${ayah} corresponds to surahId ${sID}_${ayahNumber}⭐`)
 }
 
+
+async function mulkCount(sID= 67){
+    const surahMulk = await Surah.findOne({where:{id:sID}})
+    const surahs = await Surah.findAll({
+        where:{id: {[Op.gte]: 67} },raw:true})
+    // console.log(surahs)
+    let ayatSum =0
+    const surahArray = surahs.map( (su,index) =>{
+        if(index == 0){
+            // console.log(su)
+            // console.log(`Count of Ayat: ${su.ayatCount}`)
+        }
+        // ayatS = 
+        ayatSum += su.ayatCount 
+    })
+    console.log(ayatSum)
+}
+
+// mulkCount(67)
 // 364, 200 
-ayahConvert(10) //SurahID = 4, ayahNumber = 87
+// ayahConvert(10) //SurahID = 4, ayahNumber = 87
 
 
 exports.createSurah = asyncErHandler(async( req,res) =>{
-    const {name,ayatCount,juzNumber,revelationPlace} = req.body;
+    // const {name,ayatCount,juzNumber,revelationPlace} = req.body;
     const surah = await Surah.create(req.body);
     res.status(201).json({
         status:"success",
@@ -70,6 +89,34 @@ exports.createSurah = asyncErHandler(async( req,res) =>{
     })
 })
 
+
+exports.bulkCreateSurah = async( req,res) =>{
+    // const {name,ayatCount,juzNumber,revelationPlace} = req.body;
+
+    try{
+
+        const surahs = await Surah.bulkCreate(req.body,{
+            validate:true,
+            ignoreDuplicates:true
+     });
+    
+        res.status(201).json({
+            status:"success",
+            surahs
+        })
+    }catch(err){
+        console.log(err.constructor.name)
+        console.log('Number of failed records:', err.errors.length);
+        res.status(500).json({
+            status:"error",
+            message:err.message
+        })
+    }
+}
+
+
+
+//🔖API
 exports.getSurah = asyncErHandler(async(req,res) =>{
     try{
 
@@ -110,7 +157,7 @@ exports.getSurah = asyncErHandler(async(req,res) =>{
         })
     }
 })
-
+//🔖API
 exports.getAllSurahs = asyncErHandler(async(req,res) =>{
     const surahs = await Surah.findAll();
     res.status(200).json({
@@ -127,7 +174,7 @@ exports.editSurah = asyncErHandler(async(req,res)=>{
             message:"Surah not found"
         })
     }
-    const updatedSurah = await surah.update(req.body);
+    const updatedSurah = await surah.update(req.body); //❌❌❌
     res.status(200).json({
         status:"success",
         surah:updatedSurah

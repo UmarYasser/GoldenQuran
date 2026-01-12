@@ -5,11 +5,9 @@ const CustomError =  require('./../Utils/CustomError')
 module.exports = (sequelize,Datatypes) =>{
     class Ayat extends Model{
         // Associations, instance methods...
-        static associate({Surah}){ // M-1
-            this.belongsTo(Surah,{foreignKey: "surahId"})
-        }
-        static associate({Tafseer}){
-            this.hasOne(Tafseer,{foreignKey:"ayahId"})
+        static associate({Surah, Tafseer}){ // M-1 and 1-1
+            this.belongsTo(Surah,{foreignKey: "surahId", as:"surah"})
+            this.hasOne(Tafseer,{foreignKey:"ayahId", as:"tafseer"})
         }
         // static async findBySurahAndAyahNumber(surahId,ayahNumber){
         //     return await Ayat.findOne({where:{surahId,ayahNumber}})
