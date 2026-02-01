@@ -5,6 +5,7 @@ router.route('/createTafseer/:sa').post(Tafseer.createTafseer)
 router.route('/getTafseer/:sa').get(Tafseer.getTafseer)
 router.route('/updateTafseer/:sa').patch(Tafseer.updateTafseer)
 router.route('/deleteTafseer/:sa').delete(Tafseer.deleteTafseer)
+// router.route('/pageAssign').patch(Tafseer.completePageAssign)
 
 router.route('/bulkCreate/:surahId/:ayahRange').post(Tafseer.bulkCreateTafseer)
 

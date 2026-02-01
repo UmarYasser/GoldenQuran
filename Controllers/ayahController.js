@@ -9,7 +9,58 @@ const qURL = 'http://api.alquran.cloud/v1'
 // ⭐Instead of calling their central server in US.
 // ⭐Here you need the ayahConversion algorithm
 
+// 👇From 8th ayah to 2nd surah 1st ayah, 8 => '2_1'
+function ayahConvert(ayahStr){ 
+     const allAyatCDN = [ // contains all the cumulative ayah counts for each surah
+        7,   293,   493,   669,   789,   954,  1160,  1235,  1364,  1473,  // 1-10
+        1596,  1707,  1750,  1802,  1901,  2029,  2140,  2250,  2348,  2483,  // 11-20
+        2595,  2673,  2791,  2855,  2932,  3159,  3252,  3340,  3409,  3469,  // 21-30
+        3503,  3533,  3606,  3660,  3705,  3788,  3970,  4058,  4133,  4218,  // 31-40
+        4272,  4325,  4414,  4473,  4510,  4545,  4583,  4612,  4630,  4675,  // 41-50
+        4735,  4784,  4846,  4901,  4979,  5075,  5104,  5126,  5150,  5163,  // 51-60
+        5177,  5188,  5199,  5217,  5229,  5241,  5271,  5323,  5375,  5419,  // 61-70
+        5447,  5475,  5495,  5551,  5591,  5622,  5672,  5712,  5758,  5800,  // 71-80
+        5829,  5848,  5884,  5909,  5931,  5948,  5967,  5993,  6023,  6043,  // 81-90
+        6058,  6079,  6090,  6098,  6106,  6125,  6130,  6138,  6146,  6157,  // 91-100
+        6169,  6176,  6179,  6188,  6193,  6197,  6206,  6213,  6216,  6221,  // 101-110
+        6225,  6230,  6236                                                        // 111-114
+    ]  
 
+    if(!ayahStr.includes('_')){
+        return console.log("Enter a valid surah_ayah format...")
+    }
+    const surId = ayahStr.split('_')[0] // 3
+    const ayahId = ayahStr.split('_')[1] // 1
+    
+    // Surah will be passed 1-based (-1) , we want the surah before it (-1)
+    const surah = allAyatCDN[surId-2] // 293, the 2ns surah cumulative ayah
+    const ayahRes = +surah + +ayahId // 294 ✅
+    
+    return ayahRes;
+
+}
+
+// 🌟🌟🌟 Completly Assigns all ayahs in the mushaf to their corresponding pages [using data from Quran API]
+// async function completePageAssign(){
+//     const response = await fetch('http://api.alquran.cloud/v1/quran/quran-uthmani')
+//     const result = await response.json()
+//     console.log(result.data.surahs[66])
+//     console.log(result.data.surahs[0].ayahs.page)
+//     result.data.surahs.map(async( su) =>{
+//         su.ayahs.map(async(ay) =>{
+//             const ayah = await Ayah.update({pageNumber: ay.page},
+//                 {where: {surahId: su.number, ayahNumber: ay.numberInSurah}}
+//             )
+//         })
+//     })
+// }
+
+// completePageAssign()
+
+
+async function dupAyat(){
+    
+}
 exports.createAyah =  asyncErHandler(async(req,res) =>{
     
     const ayah = await Ayah.create(req.body)
@@ -28,6 +79,7 @@ exports.getAllAyat = asyncErHandler(async(req,res)=>{
 
     res.status(200).json({
         status:'success',
+        length:ayat.length,
         ayat
     })
 })
@@ -49,35 +101,35 @@ exports.getAyahPage = asyncErHandler(async(req,res) =>{
 
     console.log('sID',sID);
     console.log('aID',aID);
-    // const ayah = await Ayah.findOne({where: {surahId:sID, ayahNumber:aID}})
+    const ayah = await Ayah.findOne({where: {surahId:sID, ayahNumber:aID}})
 
-    const response = await fetch(`${qURL}/ayah/${sID}:${aID}`)
-    const result = await response.json()
+    // const response = await fetch(`${qURL}/ayah/${sID}:${aID}`)
+    // const result = await response.json()
     // if(!result){
 
     // }
-    // if(!ayah){
-    //     const surah = await Ayah.sequelize.models.Surah.findByPk(sID)
-    //     if(surah.ayatCount < aID){
-    //         return res.status(404).json({
-    //             status:'fail',
-    //             message:"This ayah isn't found"
-    //         })
-    //     }
+    if(!ayah){
+        const surah = await Ayah.sequelize.models.Surah.findByPk(sID)
+        if(surah.ayatCount < aID){
+            return res.status(404).json({
+                status:'fail',
+                message:"This ayah isn't found"
+            })
+        }
             
-    // }
-    // console.log('ayah',ayah.dataValues);
+    }
+    console.log('ayah',ayah.dataValues);
 
-    // const ayasInPage = await Ayah.findAll({
-    //     where:{pageNumber:ayah.pageNumber},
-    //     order:[ ['surahId','ASC'], ['ayahNumber','ASC']]
-    // })
+    const ayasInPage = await Ayah.findAll({
+        where:{pageNumber:ayah.pageNumber},
+        order:[ ['surahId','ASC'], ['ayahNumber','ASC']]
+    })
     
     res.status(200).json({
         status:'success',
-        // ayasInPage,
-        // pageNumber: ayah.pageNumber,
-        APIresult:result
+        ayasInPage,
+        pageNumber: ayah.pageNumber,
+        // APIresult:result
     })
     //👇Result from the API
     /*"APIresult": {
@@ -151,6 +203,7 @@ exports.searchAyah = asyncErHandler( async(req,res)=>{
     formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[أآإ]', 'ا', 'g' )
     formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[ة]', 'ه', 'g')
     formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[\u064B-\u0652\u0671\u06F0-\u06F9]', '', 'g') //tashkeel
+
     const ayat = await Ayah.findAll({
         where: Ayah.sequelize.where(formattedText, 'LIKE', `%${query}%`),
         attributes:['id','text','ayahNumber','surahId'],
@@ -169,7 +222,7 @@ exports.searchAyah = asyncErHandler( async(req,res)=>{
 
     if(!ayat){
         return res.status(404).json({
-            message:'fail',
+            status:'fail',
             message:'No Result found'
         })
     }
@@ -208,7 +261,7 @@ exports.deleteAyah = asyncErHandler(async(req,res) =>{
 })
 
 exports.editAyah =  asyncErHandler(async(req,res)=>{
-    const ayah = await Ayah.findOne({surahId:req.params.surah,ayahNumber:req.params.ayahNumber})
+    const ayah = await Ayah.findOne({where:{surahId:req.params.surahId,ayahNumber:req.params.ayahNumber}})
     if(!ayah){
         return res.status(404).json({
             status:'fail',
@@ -275,54 +328,105 @@ exports.bulkCreateAyah = async(req,res)=>{
     }
 }
 
+// 🚨Make more human-like
 exports.bulkPageAssign = asyncErHandler(async(req,res)=>{
-    // url: /bulkPageAss/:pageNo in req.params
-    // url: /bulkPageAss/1
-    // Req.body: {surahId: 1, ayat: 1_5} 
-    const pageNo =  +req.params.pageNo // 1
-    const firAyah =  +req.body.ayat.split('_')[0] // 1
-    const lstAyah =  +req.body.ayat.split('_')[1] // 5
-    const sID =  +req.body.surahId // 1
+    // Bulk page assignment for multiple surah/ayah range combinations
+    // Req.body format: {updates: [{surahId: 1, ayat: "1_5", pageNo: 10}, ...]}
+    // Or single format: {surahId: 1, ayat: "1_5", pageNo: 10}
 
-    console.log('pageNo',pageNo);
-    console.log('firAyah',firAyah);
-    console.log('lstAyah',lstAyah);
-
-    if( !pageNo || !firAyah || !lstAyah || !sID ){
+    const updates = req.body.updates || [req.body] // Support both array and single object
+    
+    if(!Array.isArray(updates) || updates.length === 0){
         return res.status(400).json({
             status:'fail',
-            message:"Input must contain page number, surah ID, ayah range"
+            message:"Request body must contain updates array or a single update object"
         })
     }
 
-    if(lstAyah < firAyah){
-        return res.status(400).json({
-            status:'fail',
-            message:"Last ayah number must be greater than first ayah number"
-        })
-    }
+    const results = []
+    const errors = []
 
-    if( lstAyah > (await Ayah.sequelize.models.Surah.findByPk(sID)).ayatCount ){
-        return res.status(400).json({
-            status:'fail',
-            message:"Last ayah number exceeds the total ayah count of the surah"
-        })
-    }
+    for(let i = 0; i < updates.length; i++){
+        try{
+            const {surahId, ayat, pageNo} = updates[i]
+            
+            const sID = +surahId
+            const pageNumber = +pageNo
+            const firAyah = +ayat.split('_')[0]
+            const lstAyah = +ayat.split('_')[1]
 
-    const ayat = await Ayah.update(
-        {pageNumber: pageNo}, // Change this col.
-        {
-            where:{
-                surahId: sID,
-                ayahNumber:{
-                    [Op.between]: [firAyah,lstAyah]
-                }
+            console.log(`Processing update ${i+1}: pageNo=${pageNumber}, surahId=${sID}, ayat=${firAyah}-${lstAyah}`);
+
+            // Validation checks
+            if( !pageNumber || !firAyah || !lstAyah || !sID ){
+                errors.push({
+                    index: i,
+                    error:"Input must contain page number, surah ID, ayah range"
+                })
+                continue
             }
+
+            if(lstAyah < firAyah){
+                errors.push({
+                    index: i,
+                    error:"Last ayah number must be greater than first ayah number"
+                })
+                continue
+            }
+
+            const surah = await Ayah.sequelize.models.Surah.findByPk(sID)
+            if(!surah){
+                errors.push({
+                    index: i,
+                    error:`Surah with ID ${sID} not found`
+                })
+                continue
+            }
+
+            if( lstAyah > surah.ayatCount ){
+                errors.push({
+                    index: i,
+                    error:"Last ayah number exceeds the total ayah count of the surah"
+                })
+                continue
+            }
+
+            // Perform the update
+            const updatedAyat = await Ayah.update(
+                {pageNumber: pageNumber},
+                {
+                    where:{
+                        surahId: sID,
+                        ayahNumber:{
+                            [Op.between]: [firAyah,lstAyah]
+                        }
+                    }
+                }
+            )
+
+            results.push({
+                index: i,
+                status:'success',
+                surahId: sID,
+                ayahRange: `${firAyah}-${lstAyah}`,
+                pageNumber: pageNumber,
+                updatedCount: updatedAyat[0]
+            })
+        }catch(e){
+            errors.push({
+                index: i,
+                error: e.message
+            })
         }
-    )
+    }
+
     res.status(200).json({
-        status:'success',
-        ayat
+        status: errors.length === 0 ? 'success' : 'partial',
+        totalProcessed: updates.length,
+        successCount: results.length,
+        errorCount: errors.length,
+        results,
+        errors: errors.length > 0 ? errors : undefined
     })
 })
 

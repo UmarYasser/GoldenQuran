@@ -5,14 +5,27 @@
     --pal1:#AA9585;
     --pal1d:#6b5d529c;
     --pal2:#61554F;
-    --pal3:#AFAFA9;
+    --pal2d:#987c6f;
+    --pal3:#e0e0d2;
 }
 
 *{
     margin:0px;
     padding:0px;
     font-family: 'Amiri',"Poppins", sans-serif;
+    user-select:none;
     /* font-family: 'Poppins'; */
+}
+
+::-webkit-scrollbar{
+    width:15px;
+    background:var(--pal1);
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--pal3);
+    border-radius:10px;
+    border:4px var(--pal1) solid ;
 }
 
 body{
@@ -34,8 +47,36 @@ body{
     padding:5px;
     margin:5px;
     width:70%;
-    height:65px;
+    min-width:1007px;
+    height:80px;
     border-radius:20px;
+    /* transition: transform 1s ease-in-out */
+}
+
+
+/* #menu:hover{
+    transform: scale(0.7)
+}
+ */
+#menuX{
+    /* background-color:red; */
+    /* display:none; */
+    position:absolute;
+    z-index:3;
+    inset:auto 70px -70px auto;
+    font-size:3rem;
+    cursor:pointer;
+    color:var(--pal3);
+    background-color:#757070bd;
+    border-radius:20px;
+    height:50px;
+    padding:5px;
+}
+
+#menuX i::before{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .fieldOuter{
@@ -43,8 +84,9 @@ body{
     display:flex;
     flex-direction: row-reverse;
     border-radius: 20px;
-    width:103px;
-    height:30px;
+    width:150px;
+    height:40px;
+    margin:2px 3px;
     position:absolute;
     align-items:center;
     gap:10px;
@@ -56,40 +98,63 @@ body{
 .fieldInner{
     display:flex;
     background-color:white;
+    position:relative;
     padding:1px;
     border-radius:20px 0px 0px 20px;
     gap:5px;
     text-wrap:nowrap;
+    width:85px;
+}
+
+.fieldInner p,.fieldInner input{
+    font-size:1.25rem;
+    margin:0px 2px;
+}
+
+#selSurah{
+    position:absolute;
+    inset: 8px 2px auto auto;
+}
+
+#selAyah{
+    position:absolute;
+    inset: 8px 2px auto auto;
 }
 
 .fieldP{
+    font-size:1.3rem;
     margin:5px;
 }
 
 #surahSearch{
-    inset: auto 2px auto auto;
+    inset: 1px 20px auto auto;
 }
 
 #ayahSearch{
-    inset: 40px 2px auto auto;
+    inset: 45px 20px auto auto;
 }
 
 #pageSearch{
-    inset: 5px 120px auto auto;
+    inset: 2px 175px auto auto;
+    /* height:40px; */
+}
+
+#juzSearch{
+    inset: 45px 175px auto auto;
 }
 
 #pageNumber,#juzNumber{
     border:none;
     margin:0px;
-    width:40px;
+    width:50px;
+    height:35px;
+    font-size:1.1rem;
 }
 
-#juzSearch{
-    inset: 40px 120px auto auto;
-}
+
 
 #textSearch{
-    inset: auto 60% auto 40%;
+    inset: 2px 60% auto 40%;
     text-align:right;
     width:200px;
     padding:0px 10px;
@@ -108,14 +173,25 @@ body{
 }
 
 #recite{
-    inset: 30% auto auto 2px
+    inset: 47% auto auto 35% !important;
+    width:300px !important;
+    position:relative;
+    padding: 0px 10px;
+    border: 3px solid var(--pal2)
+    /* padding:2px; */
 }
 
 #tafseer{
     inset: 2px auto auto 20%;
     width:max-content;
     padding:0px 5px;
+    background-color: var(--pal3);
+    border: 2px solid var(--pal3);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
+
+
 
 #ayahQuiz,#stats{
     inset: auto auto 10% 2px;
@@ -146,34 +222,30 @@ body{
     width:90px !important;
 }
 
-#recite{
-    inset: 50% 60% auto 40%;
-    width:200px;
-    padding:0px 10px;
-}
-
 .menus{
     display: none;
     position: absolute;
-    width:850px;
+    width:890px;
     height:500px;
     background-color: var(--pal3);
     border: 5px solid var(--pal2);
     border-radius:10px;
-    inset: 100px 0px auto auto;
+    inset: 100px 130px auto auto;
     z-index:2;
     padding:20px;
     flex-direction:row;
     align-items:flex-start;
+    align-content: baseline;
     justify-content:flex-start;
     direction:rtl;
     gap:10px;
     flex-wrap:wrap;
+    overflow-y:scroll;
 }
 
 .menuBtn{
-    width:50px;
-    height:45px;
+    width:60px;
+    height:55px;
     border-radius: 10px;
     background-color:var(--pal1);
     border: 2px solid var(--pal2);
@@ -190,9 +262,14 @@ body{
 .menuBtn > p{
     text-align:center;
     height:20px;
+    font-size:1.2rem;
 }
 
-.surahOrder{
+#s112 p,#s46 p{
+    font-size:1.1rem;
+}
+
+.surahOrder,.ayahOrder{
     font-size:1.3rem;
     background-color:var(--pal1d);
     width:100%;
@@ -205,6 +282,164 @@ body{
     /* background-color:red; */
 }
 
+.ayahOrder{
+    height:100%;
+}
+
+#LSMenu,#tafseerMenu{
+    left: -300px;
+    flex-flow:column nowrap;
+}
+
+.LSBtn,.tafseerBtn,.ayahQBtn{
+    background-color: var(--pal1);
+    display:flex;
+    border: 4px solid var(--pal2);
+    border-radius:30px;
+    padding: 2px 5px;
+    gap:5px;
+    font-size:1.2rem;
+    cursor:pointer;
+    margin:5px 3px;
+    transition: all 0.3s ease-in-out;
+    font-size:1.9rem;
+}
+
+.LSBtn:hover, #ayahQuizAns .ayahQBtn:hover{
+    filter:brightness(0.8) contrast(1);
+}
+
+.LSresult,.ayahInfo,.tafseerInfo,#ayahQuizRes{
+    background-color:var(--pal2);
+    background-color:white;
+    border-radius:10px;
+    padding:6px 5px;
+    margin:2px;
+    text-decoration:underline
+}
+.LSresult{
+    text-wrap:wrap;
+    text-decoration:none;
+}
+
+.ayahInfo{
+    background-color:var(--pal2d);
+    align-self:center;
+}
+
+audio{
+    width: 290px;
+    height: 40px;
+    position:absolute;
+    left:0px;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: var(--pal3);
+    width:90px;
+    
+    border-radius: 10px;
+}
+
+audio::-webkit-media-controls-play-button {
+    background-color: var(--pal2d);
+    border-radius: 50%;
+}
+
+#ayahPage{
+    width:45px;
+    height:25px;
+    /* align-self:flex-start; */
+    /* justify-self:self-start; */
+    display:block;
+    z-index:2;
+    inset: 6px auto auto -78px;
+    position:absolute;
+    font-size:1.2rem;
+    text-align:center;
+    border-radius:10px;
+    border:none;
+    /* background-color:var(--pal1d);*/
+    border: 3px solid var(--pal1) 
+}
+
+
+#ayahPageP{
+    width:80px !important;
+    max-width:none;
+    flex: 0 0 190px;
+    white-space:nowrap;
+    padding:0px 4px;
+    inset:-4px auto auto -89px;
+    position:absolute;
+    font-size:1.2rem;
+    border: 3px solid var(--pal2)
+    /* z-index:3; */
+    /* background-color:r */
+}
+
+#LSX{
+    /* background-color:red; */
+    /* width:100px; */
+    height:100px;
+    font-size:2rem;
+    position:absolute;
+    top:-16px;
+    cursor:pointer
+}
+
+#tafseerMenu{
+    height:600px;
+    /* position:relative; */
+    width:400px;
+    flex-flow: column nowrap;
+}
+
+.tafseerInfo{
+    font-size:1.6rem !important;
+}
+#ayahQuizMenu{
+    width:500px !important;
+    height:400px;
+    justify-content:center;
+    align-content:center;
+    flex-flow:row wrap;
+    overflow-y:hidden;
+    
+}
+#ayahQCon{
+    display:flex;
+    justify-content:center;
+    flex: 0 0 100%
+}
+
+
+#ayahQuizRes{
+    font-size:1.5rem;
+    text-wrap:wrap;
+    text-decoration:none;
+    margin:4px;
+}
+/* There's a prbolem in [1] & [5] & [25] & ([29] is dup) */
+
+#ayahQuizInfo{
+    font-size:1.8rem;
+    text-decoration:underline;
+    flex: 0 0 100%;
+    text-align:center;
+}
+
+#ayahQuizAns{
+    display:flex;
+    gap:10px;
+}
+
+
+/* .tafseerBtn{
+    background-color:var(--pal1);
+    max-width: 100%;
+    text-wrap:wrap;
+} */
 /* Nav Bar */
 
 /* -------------------------- */
@@ -240,7 +475,8 @@ body{
 }
 
 #pageLf,#pageRt{
-    margin:0px 5px;    
+    margin:0px 5px;  
+    user-select: none;  
 }
 
 #nextPageBtn{
@@ -249,6 +485,7 @@ body{
     top:336px;
     left:-25px;
 }
+
 #prevPageBtn{
     position:absolute;
     cursor:pointer;

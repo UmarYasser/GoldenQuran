@@ -9,29 +9,27 @@
 </head>
 <body>
     <div id="menu" class="arabicText">
+        <div id="menuX"> <i class="fa-solid fa-circle-xmark"></i>  </div>
         <div id="surahSearch" class="fieldOuter">
             <p class="fieldP">السورة</p>
             <div id="surahName" class="fieldInner">
                 <p id="surah">البقرة</p>
-                <i class="fa-solid fa-circle-chevron-down" style="cursor:pointer" id="selSurah"></i>
-                <div id="surahMenu" class="menus"> <!-- To be Injected from the JS-->
-                </div>
+                <i class="fa-solid fa-circle-chevron-down" style="cursor:pointer;display:flex;align-items: center;" id="selSurah"></i>
             </div>
         </div>
-
+        
+        <div id="surahMenu" class="menus"> <!-- To be Injected from the JS-->
+        </div>
         <div id="ayahSearch" class="fieldOuter">
             <p class="fieldP">الآية</p>
             <div id="ayah" class="fieldInner">
-                <p id="ayahNumber">100</p>
-                <i class="fa-solid fa-circle-chevron-down" style="cursor:pointer"></i>
-                <div id="ayahMenu" class="menus"> 
-                    <div id="ayahMneuBtn" class="menuBtn"> 1</div>
-                    <div id="ayahMneuBtn" class="menuBtn"> 2</div>
-                    <div id="ayahMneuBtn" class="menuBtn"> 3</div>
-                </div>
+                <p id="ayahNumber"></p>
+                <i class="fa-solid fa-circle-chevron-down" style="cursor:pointer;display:flex;align-items: center;" id="selAyah"></i>
             </div>
         </div>
-
+        
+        <div id="ayahMenu" class="menus"> 
+        </div>
         <div id="pageSearch" class="fieldOuter">
             <p class="fieldP" >الصفحة</p>
             <input type="number" id="pageNumber" min="1" max="604" class="fieldInner">
@@ -46,28 +44,115 @@
         <div id="textSearch" class="fieldOuter">
             <p class="fieldP">بحث</p>
             <input type="text" id="liveSearch" placeholder="ابحث بالآية...">
+            <div id="LSMenu" class="menus"></div> <!-- To be injected by JS-->
         </div>
 
         <div id="recite" class="fieldOuter">
             <i class="fa-solid fa-headset"></i>
+         
+            <input id="ayahPage" type="number" class="fieldinner">
+            <p class="fieldOuter" style="width:70px" id="ayahPageP"> الآية</p>        
+            
+            <audio id="recitePlayer" controls="" src="https://cdn.islamic.network/quran/audio/128/ar.husary/2562.mp3">
+                        <source src="" type="audio/mpeg">
+            </audio>
         </div>
 
         <div id="tafseer" class="fieldOuter">
-                التفسير الميسر للصفحة:
+                :التفسير الميسر للصفحة
         </div>
+    <div id="tafseerMenu" class="menus">
+    </div>
 
-        <div id="ayahQuiz" class="fieldOuter">
-            <span style="text-align:right">
-                Ayah Quiz
-                <i class="fa-solid fa-circle-question"></i>
-            </span>
+    <div id="ayahQuiz" class="fieldOuter">
+    <span style="text-align:right">
+            Ayah Quiz
+            <i class="fa-solid fa-circle-question"></i>
+        </span>
+    </div>
+    
+    <div id="ayahQuizMenu" class="menus">
+                
+    <p id="ayahQuizInfo">
+        في أي سورة توجد هذه الآية
+    </p>
+        
+        <div id="ayahQCon">
+            <div class="ayahQBtn" id="ayahQuizQue" style="align-self:center">
+                <p id="ayahQuizRes"></p> <!-- To Be Injected By JS-->
+            </div>
         </div>
+        <div id="ayahQuizAns"> <!-- To Be Injected By JS-->
+            <div class="ayahQBtn" id="correctSurah"></div>
+            <div class="ayahQBtn"> </div>
+            <div class="ayahQBtn"></div>
+            <div class="ayahQBtn"></div>
+        </div>
+    </div>
 
         <div id="stats" class="fieldOuter">
             <span style="text-align:right">
                 إحصائيات
                 <i class="fa-solid fa-chart-line"></i> 
             </span>
+        </div>
+        <div id="statsMenu" class="menus">
+            <div id="streak">
+                الأيام المتاوصلة لفتح المصحف: ${5}
+            </div>
+            <div id="todayPages">
+                عدد صفح المقروءة اليوم: %{5}
+            </div>
+            <div id="todayTime">
+                مدة فتح المصحف: ${15} دقيقة
+            </div>
+
+            <table id="weekStats">
+                <thead>
+                    <tr>
+                        <td>اليوم</td>
+                        <td>عدد الصفح</td>
+                        <td>مدة القراءة</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>السبت</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                    <tr>
+                        <td>الأحد</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                    <tr>
+                        <td>الإثنين</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                    <tr>
+                        <td>الثلاثاء</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                    <tr>
+                        <td>الأربعاء</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                    <tr>
+                        <td>الخميس</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                    <tr>
+                        <td>الجمعة</td>
+                        <td>6</td>
+                        <td>1.5h</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- Nav Bar -->

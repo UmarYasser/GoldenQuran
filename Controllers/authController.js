@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 const util = require('util')
 const dotenv =require('dotenv')
-dotenv.config({path:'./config.env'})
+dotenv.config({path:'./config.env',quiet:true})
 
 const signToken = (ID) =>{
     return jwt.sign({id:ID},process.env.SECRET_STR)

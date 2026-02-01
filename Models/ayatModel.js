@@ -57,13 +57,18 @@ module.exports = (sequelize,Datatypes) =>{
         modelName:'Ayah',
         tableName:"ayat",
         freezeTableName:true,
-        hooks:{
+        hooks:{ // I want to remove run validation on this hook, how? 
             beforeSave: (ayahDoc)=>{// If the ayah number matches the text ending
-                ayahDoc.text = ayahDoc.text.trim()
-                let aNum = ayahDoc.text.length-2
-                if(ayahDoc.ayahNumber != ayahDoc.text[aNum]){
-                    // To prevent saving
-                    throw new CustomError("Check Ayah Number!",400)
+                // Only validate if text or ayahNumber is being changed
+                if(ayahDoc.changed('text') || ayahDoc.changed('ayahNumber')){
+                    if(ayahDoc.text){
+                        ayahDoc.text = ayahDoc.text.trim()
+                        let aNum = ayahDoc.text.length-2
+                        if(ayahDoc.ayahNumber != ayahDoc.text[aNum]){
+                            // To prevent saving
+                            throw new CustomError("Check Ayah Number!",400)
+                        }
+                    }
                 }
             },
         },

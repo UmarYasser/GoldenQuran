@@ -1,7 +1,63 @@
 const { RAW } = require('sequelize/lib/query-types')
-const {Tafseer} = require('./../Models')
+const {Tafseer,Ayah} = require('./../Models')
 const {asyncErHandler} = require('./GlobalErrorHandler')
 const {Op} = require('sequelize')
+
+const completePageAssign = async()=>{
+
+    const allSurahs = await Tafseer.sequelize.models.Surah.findAll({raw:true,
+        attributes:['id','ayatCount']
+    })
+
+    let surahIdx =0
+    // allSurahs.map(async(su) =>{ // Iteration for a surah
+        // const interval = setInterval( async()=>{
+            let su = allSurahs[1] // There's a prbolem in [1] & [29] is dup) , stopped at [50]
+            const response = await fetch(`http://api.quran-tafseer.com/tafseer/1/${su.id}/1/${su.ayatCount}`)
+            // console
+            let result = await response.json()
+            // Returns all tafseer of all the ayat in that surah
+            
+            result = result.sort((tf1,tf2) => tf1.ayah_number - tf2.ayah_number)
+            const surah = await Ayah.findAll({
+                raw:true,
+                where:{surahId:su.id},
+                order:[['ayahNumber','ASC']],
+            })
+        // Returns all the ayat of that surah
+        
+        console.log("Result:", result)
+        console.log("surah:",surah)
+        // if(su    .id == 114){
+        let arrayObj = surah.map((ay,index) =>{
+            return{
+                ayahId:ay.id,
+                text: result[index].text
+            }
+        })
+            console.log("arrayObj:",arrayObj)
+            const createdTafseers = await Tafseer.bulkCreate(arrayObj)
+            // console.log(createdTafseers)
+        // }
+        if(su.id %10 == 0){
+            console.log(`At Surah ID: ${su.id}`)
+        }
+
+
+        // Makes the object that will be inserted in bulkCreate, that matches the tafseer record
+
+            
+        // surahIdx++
+    // },12500)
+
+    
+    // if(surahIdx == 114) clearInterval(interval)
+    // One Tafseer Object : { text, ayahId}
+    
+}
+
+completePageAssign()
+
 
 exports.createTafseer = asyncErHandler(async(req,res)=>{
     //Pass the tafseerNumber&surahId, let the model find the ayah them pass the ayah's id from it
@@ -52,6 +108,11 @@ exports.getTafseer = asyncErHandler(async(req,res)=>{
         status:'success',
         tafseer
     })
+})
+
+exports.getPageTafseer= asyncErHandler(async(req,res)=>{
+    // Req.body: ayat or pagenumber and make a join wiith the ayat in that page
+    
 })
 
 exports.updateTafseer = asyncErHandler(async(req,res)=>{

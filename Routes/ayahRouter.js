@@ -10,7 +10,8 @@ router.get('/getAyahPage', ayahCon.getAyahPage)
 router.get('/liveSearch',ayahCon.searchAyah)
 router.get('/ayahQuiz',ayahCon.ayahQuiz)
 
-router.patch('/bulkPageAssign/:pageNo',ayahCon.bulkPageAssign)
+// router.patch('/bulkPageAssign/:pageNo',ayahCon.bulkPageAssign)
+router.patch('/bulkPageAssign',ayahCon.bulkPageAssign)
 router.patch('/editAyah/:surahId/:ayahNumber',ayahCon.editAyah)
 
 router.delete('/deleteAyah/:surahId/:ayahNumber',ayahCon.deleteAyah)

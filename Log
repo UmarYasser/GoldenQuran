@@ -5,7 +5,7 @@ Left: 16th Nov
      B) LiveSearch for both
 3-Voice Recitation?
 
-
+**💫 Done By 22/1/2026 [CompletePageAssign]💫** 
 11/16 => Ayah Bulk Insert Done💫 Bulk Page Assign Done💫
 Before adding the rest of the surahs, pageNumber problem must be resolved
 [BulkPageAssign] => API that takes the 1st and last ayah of that page, and assignes all the ayat 'pageNumber'  in between (inclusive) to that page
@@ -24,3 +24,20 @@ To-do: User model Integration,
 12/2 => Added ALL Surahs with Ayat💫💫`
 🧑🛠️ **Architectural Decisions**: _Back-end Focused LinkedIn Video!_
 Front-end is optional ❌-- Showcase the postman collection -- Database Diagram -- Storytell architectural decisions in the README ( local DB vs External API )
+
+
+1/12 [Frontend] => Problems to solve in the Backend:
+Surahs from 13 to 40 not appearing with ayat✅
+BulkPageAssign AI Solution
+
+-<LiveSearch Shenanigns> 
+<!-- -Fix Page Behaviour to make tafseer pages align -->
+-Tafseer
+-Stats
+-Ayah Quiz
+
+
+22/1 Problems:
+Ayah Page ASsignment
+Tafseer sources
+Recitation Problems

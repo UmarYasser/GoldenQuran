@@ -2,8 +2,7 @@ const {Surah} = require('../Models');
 const {asyncErHandler} = require("./../Controllers/GlobalErrorHandler")
 const {Op} = require('sequelize')
 
-async function ayahConvert(ayah){
-    // const surahs = await Surah.findAll({
+  // const surahs = await Surah.findAll({
     //     attributes:['id','name','ayatCount'],
     //     raw:true // To return plain JS objects without table overhead (perviousDataValues)
     // })
@@ -19,8 +18,9 @@ async function ayahConvert(ayah){
     //     // ayahNumber = ayah - 
     //     return allAyat
     // })
-        
-            
+
+// Converts ayah format from 8 => 2_1, "8th ayah to 1st ayah 2nd surah"
+async function ayahConvert(ayah){            
     let allAyat =0
     let sID = null
     let ayahNumber
@@ -39,7 +39,6 @@ async function ayahConvert(ayah){
         6169,  6176,  6179,  6188,  6193,  6197,  6206,  6213,  6216,  6221,  // 101-110
         6225,  6230,  6236                                                        // 111-114
     ]  
-
     // console.log(ayahArray[sID-2])   
     allAyatCDN.map((su, index) =>{
         if(ayah < su && !sID){
@@ -47,14 +46,8 @@ async function ayahConvert(ayah){
             sID = index+1
             return;
         }
-        // console.log(`index: ${index} su: ${su}`)
-        // break;
     })
-
-    console.log(allAyatCDN[sID-2])
     ayahNumber = ayah - allAyatCDN[sID-2]
-    
-    console.log(`⭐The Ayah ${ayah} corresponds to surahId ${sID}_${ayahNumber}⭐`)
 }
 
 
@@ -114,8 +107,6 @@ exports.bulkCreateSurah = async( req,res) =>{
     }
 }
 
-
-
 //🔖API
 exports.getSurah = asyncErHandler(async(req,res) =>{
     try{
@@ -128,9 +119,13 @@ exports.getSurah = asyncErHandler(async(req,res) =>{
                 surahId: +req.params.id
             }, 
             order:[['ayahNumber','ASC']],
+            distinct: true,
+            subQuery: false,
             include:{
                 model: Surah.sequelize.models.Tafseer,
                 attributes: ['text'],
+                as:'tafseer',
+                // required:true
                 // where:{
                 //    // Where the tafseer has ayahId mathcing the one returend from here
                 //      ayahId: Surah.sequelize.models.Ayah.sequelize.col('Ayah.id')

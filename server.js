@@ -1,7 +1,7 @@
 // Uncaught Exeption Er Handler
 
 const dotenv = require('dotenv');
-dotenv.config({path:'config.env'});
+dotenv.config({path:'config.env',quiet:true});
 const app = require('./app')
 const PORT = process.env.PORT || 3000;
 
