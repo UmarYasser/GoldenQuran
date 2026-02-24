@@ -44,7 +44,9 @@
         <div id="textSearch" class="fieldOuter">
             <p class="fieldP">بحث</p>
             <input type="text" id="liveSearch" placeholder="ابحث بالآية...">
-            <div id="LSMenu" class="menus"></div> <!-- To be injected by JS-->
+            <div id="LSMenu" class="menus">
+
+            </div> <!-- To be injected by JS-->
         </div>
 
         <div id="recite" class="fieldOuter">
@@ -72,7 +74,7 @@
     </div>
     
     <div id="ayahQuizMenu" class="menus">
-                
+    
     <p id="ayahQuizInfo">
         في أي سورة توجد هذه الآية
     </p>
@@ -83,10 +85,15 @@
             </div>
         </div>
         <div id="ayahQuizAns"> <!-- To Be Injected By JS-->
+            <div id="AQBlanket"></div>
             <div class="ayahQBtn" id="correctSurah"></div>
             <div class="ayahQBtn"> </div>
             <div class="ayahQBtn"></div>
             <div class="ayahQBtn"></div>
+        </div>
+        <div id="AQScoreCon">
+            <p id="ayahQuizScoreC" style="align-self:center;margin-top: 10px;">صحيح: <p id="correctAQ">0</p> </p>
+            <p id="ayahQuizScoreW" style="align-self:center;margin-top: 10px;">خطأ: <p id="wrongAQ">0</p> </p>
         </div>
     </div>
 
@@ -97,14 +104,51 @@
             </span>
         </div>
         <div id="statsMenu" class="menus">
-            <div id="streak">
-                الأيام المتاوصلة لفتح المصحف: ${5}
+            <div id="noToken" style="display: none;">
+                <p>قم بتسجيل الدخول ليتم حساب احصائيات لك مثل:</p>
+                <form id="loginForm" method="POST">
+                    
+                    <div id="nameCon" style="display: none;">
+                        <i class="fa-solid fa-signature fa-xl" style="color: #61554F;"></i>
+                        <input name="name" id="name" type="text" placeholder="الاسم بالعربي" >
+                    </div>
+                    <div id="emailCon">
+                        <i class="fa-solid fa-envelope fa-xl" style="color: #61554F;"></i>
+                        <input name="email" id="email" type="email" placeholder="البريد" required>
+                    </div>
+                    <div>
+                        <!-- <label> Password</label> -->
+                        <i class="fa-solid fa-lock-open fa-xl" style="color:#61554F" hidden=""></i>
+                        <i id="forgotQues" class="fa-solid fa-lock fa-xl" style="color:#096B68;display: none;"></i>
+                        <input id="password" name="password" type="password" placeholder="كلمة المرور" required>
+                        <div id="showPassword" style="display:inline; cursor: pointer;"><i class="fa-solid fa-eye fa-2xl" style="color:#61554F"></i> </div>
+                    </div>
+                    <div id="conPassCon" style="display: none;">
+                        <!-- <label> Password</label> -->
+                        <i class="fa-solid fa-lock-open fa-xl" style="color:#61554F" hidden=></i>
+                        <i id="forgotQues" class="fa-solid fa-lock fa-xl" style="color:#096B68;display: none;"></i>
+                        <input id="conPassword" name="confirmPassword" type="password" placeholder="تأكيد كلمة المرور" >
+                        <div id="showConPassword" style="display:inline; cursor: pointer;"><i class="fa-solid fa-eye fa-2xl" style="color:#61554F"></i> </div>
+                    </div>
+                    <button type="submit" id="LogInBtn">سجّل الدخول</button>
+                    <div id="haveAccount">ليس لديك حساب؟</div>
+                    <p id="resMessage"></p>
+                </form>
             </div>
-            <div id="todayPages">
-                عدد صفح المقروءة اليوم: %{5}
-            </div>
-            <div id="todayTime">
-                مدة فتح المصحف: ${15} دقيقة
+            <p id="Date"> </p>
+            <div id="statsCon">
+                <div id="streak">
+                    الأيام المتاوصلة لفتح المصحف: <span id="userStreak"></span>
+                </div>
+                <div id="longestStreak">
+                   أكثر أيام متاوصلة: <span id="userLongestStr"></span>
+                </div>
+                <div id="todayPages">
+                    عدد صفح المقروءة اليوم: <span id="userPages"></span>
+                </div>
+                <div id="todayTime">
+                    مدة فتح المصحف: <span id="userTime"></span>
+                </div>
             </div>
 
             <table id="weekStats">
@@ -117,39 +161,39 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>السبت</td>
-                        <td>6</td>
-                        <td>1.5h</td>
-                    </tr>
-                    <tr>
                         <td>الأحد</td>
-                        <td>6</td>
-                        <td>1.5h</td>
+                        <td>?</td>
+                        <td>?</td>
                     </tr>
                     <tr>
                         <td>الإثنين</td>
-                        <td>6</td>
-                        <td>1.5h</td>
+                        <td>?</td>
+                        <td>?</td>
                     </tr>
                     <tr>
                         <td>الثلاثاء</td>
-                        <td>6</td>
-                        <td>1.5h</td>
+                        <td>?</td>
+                        <td>?</td>
                     </tr>
                     <tr>
                         <td>الأربعاء</td>
-                        <td>6</td>
-                        <td>1.5h</td>
+                        <td>?</td>
+                        <td>?</td>
                     </tr>
                     <tr>
                         <td>الخميس</td>
-                        <td>6</td>
-                        <td>1.5h</td>
+                        <td>?</td>
+                        <td>?</td>
                     </tr>
                     <tr>
                         <td>الجمعة</td>
-                        <td>6</td>
-                        <td>1.5h</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td>السبت</td>
+                        <td>?</td>
+                        <td>?</td>
                     </tr>
                 </tbody>
             </table>

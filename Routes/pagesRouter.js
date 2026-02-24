@@ -2,7 +2,6 @@ const router = require('express').Router()
 
 const fs = require('fs')
 const Mushaf = fs.readFileSync('./Public/Pages/Mushaf.html')
-const Login = fs.readFileSync('./Public/Pages/Login.html')
 
 
 const sendPage = (page) =>{
@@ -13,5 +12,5 @@ const sendPage = (page) =>{
 }
 
 router.get("/Mushaf.html", sendPage(Mushaf))
-router.get("/",sendPage(Login))
+router.get("/",sendPage(Mushaf))
 module.exports = router

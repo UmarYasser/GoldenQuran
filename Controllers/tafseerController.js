@@ -3,7 +3,7 @@ const {Tafseer,Ayah} = require('./../Models')
 const {asyncErHandler} = require('./GlobalErrorHandler')
 const {Op} = require('sequelize')
 
-const completePageAssign = async()=>{
+const completeAssign = async()=>{
 
     const allSurahs = await Tafseer.sequelize.models.Surah.findAll({raw:true,
         attributes:['id','ayatCount']
@@ -12,8 +12,8 @@ const completePageAssign = async()=>{
     let surahIdx =0
     // allSurahs.map(async(su) =>{ // Iteration for a surah
         // const interval = setInterval( async()=>{
-            let su = allSurahs[1] // There's a prbolem in [1] & [29] is dup) , stopped at [50]
-            const response = await fetch(`http://api.quran-tafseer.com/tafseer/1/${su.id}/1/${su.ayatCount}`)
+            let su = allSurahs[15] // There's a prbolem in [1] & [29] is dup) , stopped at [50]
+            const response = await fetch(`http://api.quran-tafseer.com/tafseer/1/${su.id}/1/100`)
             // console
             let result = await response.json()
             // Returns all tafseer of all the ayat in that surah
@@ -21,13 +21,13 @@ const completePageAssign = async()=>{
             result = result.sort((tf1,tf2) => tf1.ayah_number - tf2.ayah_number)
             const surah = await Ayah.findAll({
                 raw:true,
-                where:{surahId:su.id},
+                where:{surahId:su.id, ayahNumber: {[Op.lte]:100}},
                 order:[['ayahNumber','ASC']],
             })
         // Returns all the ayat of that surah
         
-        console.log("Result:", result)
-        console.log("surah:",surah)
+        console.log("Result:", result[result.length-1])
+        console.log("surah:",surah[surah.length-1])
         // if(su    .id == 114){
         let arrayObj = surah.map((ay,index) =>{
             return{
@@ -35,14 +35,13 @@ const completePageAssign = async()=>{
                 text: result[index].text
             }
         })
-            console.log("arrayObj:",arrayObj)
+            // console.log("arrayObj:",arrayObj)
             const createdTafseers = await Tafseer.bulkCreate(arrayObj)
             // console.log(createdTafseers)
         // }
         if(su.id %10 == 0){
             console.log(`At Surah ID: ${su.id}`)
         }
-
 
         // Makes the object that will be inserted in bulkCreate, that matches the tafseer record
 
@@ -53,10 +52,10 @@ const completePageAssign = async()=>{
     
     // if(surahIdx == 114) clearInterval(interval)
     // One Tafseer Object : { text, ayahId}
-    
 }
 
-completePageAssign()
+//⭐⭐⭐⭐⭐
+// completeAssign()
 
 
 exports.createTafseer = asyncErHandler(async(req,res)=>{

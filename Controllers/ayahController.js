@@ -196,29 +196,39 @@ exports.getPageAyah = asyncErHandler( async(req,res) => {
 //🔖API
 exports.searchAyah = asyncErHandler( async(req,res)=>{
     const query = req.query.q
-    console.log('query',query);
-    //Format text to temove tashkeel:
+    //Format text to قemove tashkeel:
     let formattedText = Ayah.sequelize.fn('regexp_replace', Ayah.sequelize.col('text'), 'ٱ', 'ا', 'g')
     formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, 'ٰ', 'ا', 'g')
     formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[أآإ]', 'ا', 'g' )
     formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[ة]', 'ه', 'g')
-    formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[\u064B-\u0652\u0671\u06F0-\u06F9]', '', 'g') //tashkeel
+    formattedText = Ayah.sequelize.fn('regexp_replace', formattedText, '[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]', '', 'g') //tashkeel
+    function normalizeArabic(text) {
+        
+        return text
+            .normalize("NFC") // important!
+            .replace(/ٱ/g, 'ا')
+            .replace(/ٰ/g, '')
+            .replace(/[أآإ]/g, 'ا')
+            .replace(/ة/g, 'ه')
+            .replace(/ـ/g, '') // remove tatweel
+            .replace(/[\u064B-\u0652\u0671\u06F0-\u06F9]/g, '');
+    }
 
+
+    
     const ayat = await Ayah.findAll({
-        where: Ayah.sequelize.where(formattedText, 'LIKE', `%${query}%`),
+        where: Ayah.sequelize.where(formattedText, 'ILIKE', `%${normalizeArabic(query)}%`),
         attributes:['id','text','ayahNumber','surahId'],
         // limit:15, / Maybe...
         include:{
             model: Ayah.sequelize.models.Surah,
             as: 'surah',
             attributes:['name'],
-            // where:{
-            //     id: Ayah.sequelize.col('Ayah.surahId')
-            // }
-            // It should know what column to link with => no where clause
         },
-        order:[['surahId','ASC'],['ayahNumber','ASC']]
+        order:[['surahId','ASC'],['ayahNumber','ASC']],
+        // raw:true
     })
+
 
     if(!ayat){
         return res.status(404).json({

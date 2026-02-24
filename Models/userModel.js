@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     //when calling res.json({ user})
     toJSON(){ // When returning an instance, hide the id.
-      return {...this.get(),id:undefined,password:undefined,confirmPassword:undefined}
+      return {...this.get(),id:undefined,password:undefined,confirmPassword:undefined,uuid:undefined,changePasswordAt:undefined}
     }
   }
   User.init({ // Class Attributes
@@ -67,11 +67,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    streak:{
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0
-    },
     role: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -83,7 +78,11 @@ module.exports = (sequelize, DataTypes) => {
     streak:{
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: 0
+      defaultValue: 1
+    },
+    longestStreak:{
+      type: DataTypes.INTEGER,
+      defaultValue:1
     }
   }, {
     sequelize: sequelize, // ⭐Must pass the sequelize connection (1st para. in the factory fn)
@@ -91,7 +90,8 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'users',
     freezeTableName:true,
     hooks:{
-      beforeSave: async(user)=>{
+      // Using beforeSave will make a new hash for the password everytime the user gets saved, we only want it be hashed before creation
+      beforeCreate: async(user)=>{
         if(user.password){
           const salt = await bcrypt.genSalt(10)
           user.password = await bcrypt.hash(user.password,salt)

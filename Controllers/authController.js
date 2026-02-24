@@ -62,14 +62,21 @@ exports.logIn = asyncErHandler(async(req,res)=>{
             message:'Incorrect email or password'
         })
     }
-    
+    console.log('User Found:',user)
+
+    const salt = await bcrypt.genSalt(10)
+    let hashed = await bcrypt.hash(password,salt)
+    console.log(`Hashed Password: ${hashed}`)
+    // await User.
     const isMatch = await user.comparePassword(password,user.password)
+    console.log(`Password : ${password}, User Password: ${user.password}, Is Match: ${isMatch}`)
     if(!isMatch){
         return res.status(401).json({
             status:'fail',
             message:'Incorrect email or password'
         })
     }
+
 
     const cookieOptions = {
         httpOnly:true,
@@ -84,9 +91,9 @@ exports.logIn = asyncErHandler(async(req,res)=>{
     const token = signToken(user.uuid)
     res.cookie('jwt',token,cookieOptions)
 
-    res.status(201).json({
+    res.status(200).json({
         status:'success',
-        message:'Siginning Up Successfully',
+        message:'Logging In Successfully',
         token: process.env.NODE_ENV =='development' ? token : 'token?'
     })
 })

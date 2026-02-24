@@ -15,7 +15,8 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize('UmarDB', 'postgres', 'sql_professional', {
     host:'localhost',
-    dialect:'postgres'
+    dialect:'postgres',
+    logging:false
   });
 }
 
