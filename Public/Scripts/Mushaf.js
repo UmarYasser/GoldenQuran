@@ -979,7 +979,6 @@ window.addEventListener("beforeunload",async()=>{
     //🌟 Any fetch request is canceled due to closing the page and data isn't sent to the back end
     
     let addPage = false
-    localStorage.setItem("prevScreenTime",pageScTime)
     try{
         if(pageScTime >=15){
             addPage = true
