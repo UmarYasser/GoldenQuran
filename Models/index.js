@@ -13,10 +13,16 @@ let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize('UmarDB', 'postgres', 'sql_professional', {
-    host:'localhost',
+  sequelize = new Sequelize(process.env.SQL_DB, process.env.SQL_USER, process.env.SQL_PASS, {
+    host:process.env.SQL_HOST,
     dialect:'postgres',
-    logging:false
+    logging:false,
+      dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
   });
 }
 
