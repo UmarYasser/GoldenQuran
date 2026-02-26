@@ -9,8 +9,8 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    const indexes = await queryInterface.showIndex("trackers")
-    console.log('indexes',indexes)
+    await queryInterface.addIndex('tafseers',['ayahId'])
+    await queryInterface.addIndex('ayat',['surahId'])
   },
 
   async down (queryInterface, Sequelize) {
