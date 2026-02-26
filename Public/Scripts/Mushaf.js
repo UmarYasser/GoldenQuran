@@ -666,7 +666,7 @@ pgNo.addEventListener('input', async(e) =>{
         }
 
         if(!response.ok){
-            throw new Error(`Error Fetching Tracker:${err.stack}`)
+            throw new Error(`Error Fetching Tracker:${response.statusText}`)
         }
     }catch(err){
         console.log(`Error Fetching Tracker: ${err.stack}`)
