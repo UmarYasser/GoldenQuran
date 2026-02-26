@@ -99,8 +99,6 @@ exports.getAyahPage = asyncErHandler(async(req,res) =>{
     const sID = req.query.sa.split('_')[0] //1
     const aID = req.query.sa.split("_")[1] //6
 
-    console.log('sID',sID);
-    console.log('aID',aID);
     const ayah = await Ayah.findOne({where: {surahId:sID, ayahNumber:aID}})
 
     // const response = await fetch(`${qURL}/ayah/${sID}:${aID}`)
@@ -301,15 +299,12 @@ exports.bulkCreateAyah = async(req,res)=>{
         .split(/\(\d+\)/) // Split on any seq. of numbers with the () ==> aasda(10)asdasdasd Is removed
         .filter(ay => ay != '') // Remove the empty array element found after the split
         
-        console.log('ayahArray',ayahArray)
         
         ayahString = ayahString.trim()
         const opBr = ayahString.indexOf('(') // 5
         const clBr = ayahString.indexOf(')') // 8    Get the position of the first ayah end number
         const ayahNum = ayahString.substring(opBr+1,clBr) // [6,8[
         //                                    6       8 (Excluded)
-        console.log('opBr',opBr);
-        console.log('ayahString[opBr]',ayahString[opBr]);
         let ayahCounter = parseInt(ayahNum) // Ex: 10
         
         
@@ -323,11 +318,8 @@ exports.bulkCreateAyah = async(req,res)=>{
                 ayahNumber: ayahCounter -1 // Because it was incremented after being used
             }
         })
-        console.log('ayahArray#2',ayahArray)
-        console.log('ayahObj',arrayObj)
         
         const ayatDB = await Ayah.bulkCreate(arrayObj,{validate:true, ignoreDuplicates:true})
-        console.log('ayatDB', ayatDB)
         
         res.status(201).json({
             status:'success',

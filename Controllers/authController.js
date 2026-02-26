@@ -23,7 +23,6 @@ exports.signUp = async(req,res)=>{
             })
         }
 
-        console.log(`req.body: ${req.body}`,req.body)
         
         const user = await User.create(req.body)
         const token = signToken(user.uuid)
@@ -35,7 +34,6 @@ exports.signUp = async(req,res)=>{
             maxAge: 24*60*60*1000
         }
         res.cookie('jwt',token,cookieOptions)
-        console.log('jwt:',token)
         res.status(200).json({
             status:'success',
             user,
@@ -62,14 +60,11 @@ exports.logIn = asyncErHandler(async(req,res)=>{
             message:'Incorrect email or password'
         })
     }
-    console.log('User Found:',user)
 
     const salt = await bcrypt.genSalt(10)
     let hashed = await bcrypt.hash(password,salt)
-    console.log(`Hashed Password: ${hashed}`)
     // await User.
     const isMatch = await user.comparePassword(password,user.password)
-    console.log(`Password : ${password}, User Password: ${user.password}, Is Match: ${isMatch}`)
     if(!isMatch){
         return res.status(401).json({
             status:'fail',

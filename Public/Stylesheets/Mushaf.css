@@ -63,9 +63,9 @@ body{
  */
 #menuX{
     /* background-color:red; */
-    /* display:none; */
+    display:none;
     position:absolute;
-    z-index:3;
+    z-index:7;
     inset:auto 70px -70px auto;
     font-size:3rem;
     cursor:pointer;
@@ -209,11 +209,14 @@ body{
 
 #stats{
     width:75px;
+    border:2px solid var(--pal3);
 }
 
 #ayahQuiz{
-    width:16px;
-    inset: 0% auto auto 0%;
+    width:110px;
+    font-size:1.2rem;
+    inset: 0% auto auto 5%;
+    border:2px solid var(--pal3);
 }
 
 #ayahQuiz span, #stats span{
@@ -223,8 +226,8 @@ body{
 
 #stats{
     inset: 0px auto auto 25%;
-    font-size:1.4rem;
-    width:110px
+    font-size:1.2rem;
+    width:100px
 }
 
 /* #stats:hover{
@@ -232,9 +235,9 @@ body{
 }
 */
 
-#ayahQuiz:hover{
+/* #ayahQuiz:hover{
     width:90px !important;
-} 
+}  */
 
 .menus{
     display: none;
@@ -245,7 +248,7 @@ body{
     border: 5px solid var(--pal2);
     border-radius:10px;
     inset: 100px 130px auto auto;
-    z-index:2;
+    z-index: 6;
     padding:20px;
     flex-direction:row;
     align-items:flex-start;
@@ -257,6 +260,12 @@ body{
     overflow-y:scroll;
     animation: menuOpen 0.7s  backwards ease-in-out;
 }
+
+.active{
+    display:flex !important;
+}
+
+
 
 @keyframes menuOpen{
     from{
@@ -311,18 +320,17 @@ body{
     height:100%;
 }
 
-#LSMenu,#tafseerMenu{
+#tafseerMenu{
     left: -300px;
     flex-flow:column nowrap;
 }
 
-#tafseerMenu{
-    display: flex;
-}
-
 
 #LSMenu{
-    z-index:3;
+    /* z-index:3; */
+    left:50%;
+    transform: translateX(-50%);
+    flex-flow:column nowrap;
 }
 
 
@@ -439,7 +447,8 @@ audio::-webkit-media-controls-play-button {
     /* position:relative; */
     width:400px;
     flex-flow: column nowrap;
-    animation: menuOpenTM 0.9s backwards ease-in-out
+    animation: menuOpenTM 0.9s backwards ease-in-out;
+    z-index:2;
 }
 
 @keyframes menuOpenTM{
@@ -461,8 +470,11 @@ audio::-webkit-media-controls-play-button {
     justify-content:center;
     align-content:center;
     flex-flow:row wrap;
-    overflow-y:hidden;
-    animation: menuOpenAQ 0.9s backwards ease-in-out
+    overflow-y:scroll;
+    animation: menuOpenAQ 0.9s backwards ease-in-out;
+    left: 50%; 
+    top:150px;
+    transform: translateX(-50%);
 }
 
 #AQBlanket{
@@ -529,6 +541,9 @@ audio::-webkit-media-controls-play-button {
     font-size:1.2rem;
     width: 730px;
     height:540px;
+    left:50%;
+    top:150px;
+    transform: translateX(-50%);
     animation: menuOpenSM 0.9s backwards ease-in-out;
 }
 
@@ -703,3 +718,16 @@ audio::-webkit-media-controls-play-button {
     top:336px;
     right:-25px;
 }   
+
+#marker{
+    width:50px;
+    background: url(../Images/marker.png);
+    width:35px;
+    height:70px;
+    top:-5px;
+    left:-15px;
+    position:absolute;
+    z-index:5;
+    /* background-color:red; */
+    /*  */
+}

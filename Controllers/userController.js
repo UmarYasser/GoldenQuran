@@ -8,7 +8,6 @@ exports.displayAll = asyncErHandler(async(req,res) =>{
     const users = await User.findAll()
 
 
-    console.log('users:', users)
     res.status(200).json({
         status:'success',
         message:users.length == 0 ? "No Users Yet" : undefined,
@@ -20,14 +19,12 @@ exports.displayAll = asyncErHandler(async(req,res) =>{
 
 exports.displayById = asyncErHandler(async(req,res) =>{
     const user = await User.findOne({where: {uuid:req.params.uuid},raw:true})
-    console.log('user:',user)
     if(!user){
         return res.status(404).json({
             status:'fail',
             message:"No User found with this ID"
         })
     }
-    console.log('user:',user)
     res.status(200).json({
         status:'success',
         data:user

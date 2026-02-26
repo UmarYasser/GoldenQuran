@@ -118,8 +118,6 @@ exports.editTracker = asyncErHandler( async(req,res) =>{
         const yesterdayTr = await Tracker.findOne({
             where: {date:yesterday,userId: req.user.id}
         })
-        console.log('Yesterday:',yesterday)
-        console.log("Yesterday's Tracker:",yesterdayTr)
 
 
         if(yesterdayTr){// If we found a tracker for that user yesterday
@@ -144,7 +142,6 @@ exports.editTracker = asyncErHandler( async(req,res) =>{
 
 
     //Gurenteed to be found, if not, create it now
-    console.log("Tracker",tracker)
 
     //👇 Check for yesterday's tracker, if found, increase user's streak by one & handle longest streak
 

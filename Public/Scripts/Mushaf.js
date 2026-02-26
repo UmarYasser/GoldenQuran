@@ -1,4 +1,4 @@
-const url = 'https://goldenquran.onrender.com'
+const url = 'http://localhost:3000'
 const getTr = document.getElementById("getTr")
 const pgNo = document.getElementById("pageNumber")
 const pageLf = document.getElementById("pageLf")
@@ -206,6 +206,8 @@ document.addEventListener("DOMContentLoaded",async(e)=>{
         pgNo.value = +localStorage.pageNumber || 1
     }
 
+    // The Default is open
+    document.getElementById("tafseerMenu").classList.toggle('active')
     
     pgNo.dispatchEvent(new Event('input'))
     // 👇Load Surahs into localStorage, so it won't be called every refresh      
@@ -292,7 +294,7 @@ document.addEventListener("DOMContentLoaded",async(e)=>{
         })
         const result = await response.json()
         if(result.status == 'fail'){ // User isn't logged in
-            document.getElementById("stats").style.backgroundColor = 'red'
+            document.getElementById("stats").style.backgroundColor = '#e24d4d'
             document.getElementById("noToken").style.display = 'block'
             document.getElementById("statsCon").style.filter = 'brightness(0.6)'
             document.getElementById("weekStats").style.filter = 'brightness(0.6)'
@@ -485,10 +487,12 @@ document.getElementById("loginForm").addEventListener("submit",async function(e)
             })
             const result = await response.json()
             console.log(result)
-            if(response.ok){
+            if(result.status == 'success'){
                 document.dispatchEvent(new Event('DOMContentLoaded'))
                 document.getElementById("noToken").style.display = 'none'
                 document.getElementById('stats').style.backgroundColor = '#e0e0d2'
+            }else{
+                document.getElementById("resMessage").textContent = result.message
             }
             
         }
@@ -522,19 +526,16 @@ document.getElementById("showConPassword").addEventListener("click",(e)=>{
 })
 
 // 👇Toggling the Surah Menu
-let surahMenu = false
 document.getElementById("selSurah").addEventListener('click',(e)=>{
-    document.querySelectorAll('.menus').forEach(el =>{
-        el.style.display = 'none'
-    })// 👆If there's any other menu is open, close it
-    
-    surahMenu = !surahMenu // Reverse the state, if true, becomes false
-    if(surahMenu){
-        document.getElementById("surahMenu").style.display = 'flex'
+    document.getElementById("surahMenu").classList.toggle("active")
+
+    if(document.getElementById("surahMenu").classList.contains("active")){
+        document.querySelectorAll('.menus').forEach(el =>{
+        if(el.id != 'tafseerMenu' && el.id != 'surahMenu')
+            el.classList.remove('active')
+        })// 👆If there's any other menu is open, close it
     }
-    else if(!surahMenu){
-        document.getElementById("surahMenu").style.display = 'none'
-    }
+    console.log(document.getElementById("surahMenu").classList)
 })
 
 // 👇Choosing the Surah 
@@ -557,8 +558,10 @@ document.querySelector("#surahMenu").addEventListener('click',async(e)=>{
         // console.log("Set Page from surah event listener")
         document.getElementById("pageNumber").value = selectedSurah.pageNumber
     }
-    document.getElementById("surahMenu").style.display = 'none'
-    
+    if(surahMenuSel)
+        document.getElementById("surahMenu").classList.toggle('active')
+
+
     if(e.target.closest('.menuBtn')) {
         // If a surah was clicked
         pgNo.dispatchEvent(new Event('input')) //⭐ To trigger the input event to load the pages
@@ -589,19 +592,16 @@ document.querySelector("#surahMenu").addEventListener('click',async(e)=>{
 })
 
 // 👇Toggling Ayah Menu
-let ayahMenu = false
 document.getElementById("selAyah").addEventListener("click", (e)=>{
-    document.querySelectorAll('.menus').forEach(el =>{
-        el.style.display = 'none'
-    })// 👆If there's any other menu is open, close it
+    document.getElementById("ayahMenu").classList.toggle("active")
     
-
-    ayahMenu = !ayahMenu
-    if(ayahMenu){
-        document.getElementById("ayahMenu").style.display = 'flex'
-    } else if(!ayahMenu){
-        document.getElementById("ayahMenu").style.display = 'none'
+    if(document.getElementById("ayahMenu").classList.contains("active")){
+        document.querySelectorAll('.menus').forEach(el =>{
+         if(el.id != 'tafseerMenu' && el.id != 'ayahMenu')
+            el.classList.remove('active')
+        })// 👆If there's any other menu is open, close it
     }
+
 })
 
 // 👇Clicking on an ayah
@@ -613,19 +613,17 @@ document.getElementById("ayahMenu").addEventListener('click',(e)=>{
             ayah = ayahDiv.id.split('a')[1] // id="a2" => 2
             pageAyah = null
             ayahMenuSel = true
-            console.log("An Ayah was clicked on", ayah)
         }else{
             ayah = LSAyah || pageAyah
         }
-        console.log(`The Problem Ayah: ${ayah}`)
         document.getElementById("ayahNumber").textContent = toArabic(ayah)
         pgNo.value = JSON.parse(localStorage.getItem("selSurahData")).ayat[ayah-1].pageNumber
         if(!pageAyah){
             pgNo.dispatchEvent(new Event('input'))
-            console.log("I'm the evil page event listener")
         } // If the page event listener is calling this event, don't call the page event listener
     
-        document.getElementById("ayahMenu").style.display = 'none'
+        if(ayahMenuSel)
+            document.getElementById("ayahMenu").classList.toggle('active')
 
     }catch(err){
         console.log(`Error at Ayah Menu: ${err.stack}`)
@@ -640,7 +638,6 @@ document.getElementById("juzNumber").addEventListener('input', (e)=>{
     const juzNo = document.getElementById("juzNumber").value
     const firSurah = surahResult.find(su => juzNo == su.juzNumber)
     const firAyah = JSON.parse(localStorage.getItem("selSurahData")).ayat.find(ay => ay.pageNumber == firSurah.pageNumber)
-    console.log(firSurah)
     pgNo.value = firAyah.pageNumber
 
     pgNo.dispatchEvent(new Event('input'))
@@ -674,7 +671,6 @@ pgNo.addEventListener('input', async(e) =>{
         try{
             // If the page is in the same surah it was before (Flipping pages in the same surah)
         if(pageNo >= surahResult[sID-1].pageNumber && pageNo < surahResult[sID].pageNumber){
-            // console.log(`Page ${pageNo} is aligned with surah ${surahResult[sID-1].name}`)
             setTimeout(() =>{
                 const firAyah = JSON.parse(localStorage.selSurahData).ayat.find(ay => ay.pageNumber == pageNo)      
                 pageAyah = firAyah.ayahNumber
@@ -692,9 +688,6 @@ pgNo.addEventListener('input', async(e) =>{
                 }else{
                     newSurah = surahResult.find(su => pageNo <  su.pageNumber   ) // Gets the next surah after that page
                     newSurah = surahResult[newSurah.id-2]
-                    console.log("newSurah:",newSurah)
-                    // newSurah = surahResult.filter(su =>su.pageNumber == newSurah.pageNumber-1 ) // goes the previous surah (the one that page lies in)
-                    // console.log("newSurah:",newSurah)
                 }
                 
                 if(!surahMenuSel)
@@ -702,21 +695,14 @@ pgNo.addEventListener('input', async(e) =>{
 
                 if(newSurah.length  == 1){ // That page contains only 1 surah
                     newSurah = newSurah[0] // No need for array indexing 
-                    console.log("I'm page event listener and selected the 1st AND ONLY surah in the page")
                 }
                 document.getElementById("surahMenu").dispatchEvent(new Event("click"))
                 surahMenuSel = false
 
                 setTimeout(()=>{
                     let firAyah = JSON.parse(localStorage.selSurahData).ayat.find(ay => ay.pageNumber == pageNo)
-                    console.log(JSON.parse(localStorage.selSurahData).ayat)
-                    console.log(`First Ayah in that page:`,firAyah)
-                    // console.log(`First Ayah in that page:`,firAyah.ayahNumber)
-                    // LSAyah = firAyah.ayahNumber
-                    console.log(`ayahMenuSel: ${ayahMenuSel}`)
                     if(!ayahMenuSel){
                         document.getElementById("ayahMenu").dispatchEvent(new Event('click'))
-                        console.log("I understand that an ayah is slected from the menu and I won't call the event form the page event listener ")
                     }
                     ayahMenuSel = false
                 },300)
@@ -734,8 +720,6 @@ pgNo.addEventListener('input', async(e) =>{
             const ayId = JSON.parse(localStorage.selSurahData).ayat//.find(ay => ay.pageNumber == pageNo)
             const pageAyahId = ayId.filter(ay => ay.pageNumber == pageNo) // REturns an array of ayat in that page
             ayahInPage = pageAyahId[0].ayahNumber
-            // console.log(`Page Ayat: ${JSON.stringify(pageAyahId)}`)
-            // console.log(`Surah ID: ${surId}, Ayah ID: ${ayahInPage}`)
             const ayCon = `${surId}_${pageAyahId[0].ayahNumber}`            
             const ayahCDN = ayahConvert(ayCon)
 
@@ -781,7 +765,6 @@ pgNo.addEventListener('input', async(e) =>{
 let ayahInPage =0 // Set in the page event listener to the 1st ayahNumber in the page
 document.getElementById("recitePlayer").addEventListener("ended", (e)=>{
     ayahInPage++
-    console.log("Ayah Recitation end event fired")
     const finishedAyah = e.target.src.split(/\/([^/]+)\.mp3/)[1] // 2231, overall in mushaf
     const ayatPage = JSON.parse(localStorage.selSurahData).ayat.filter(ay => ay.pageNumber == pgNo.value)
 
@@ -789,18 +772,15 @@ document.getElementById("recitePlayer").addEventListener("ended", (e)=>{
         ayahInPage = ayatPage[0].ayahNumber
     }
 
-    // console.log("Ayah in Page #2:",ayatPage)
 
     document.getElementById('ayahPage').value = ayatPage.find(ay => ay.ayahNumber == ayahInPage).ayahNumber
     
     // The Ayat in that page only
     const finishedAyahCDN = ayahConvertCDN(finishedAyah) // 2_1
-    // console.log(ayatPage[ayatPage.length -1].ayahNumber + "||" + finishedAyahCDN.split('_')[1] )
 
     
     const nextAyah = localStorage.selSurahId + '_'  + ayatPage.find(ay => ay.ayahNumber ==ayahInPage).ayahNumber
     const nextAyahCDN = ayahConvert(nextAyah)
-    // console.log(`Next Ayah to be played: ${nextAyah} , CDN format: ${nextAyahCDN}`)
     document.getElementById("recitePlayer").src  = `https://cdn.islamic.network/quran/audio/128/ar.husary/${nextAyahCDN}.mp3`
     document.getElementById("recitePlayer").load()
     document.getElementById("recitePlayer").play()
@@ -818,12 +798,19 @@ document.getElementById("liveSearch").addEventListener("input", async(e)=>{
     const searchTerm = document.getElementById("liveSearch").value
     try{
 
-        if(document.getElementById("liveSearch").value.length > 2){ // The Field isn't empty
+        if(searchTerm.length > 2){ // The Field isn't empty
             const response = await fetch(`${url}/api/v1/ayah/liveSearch?q=${searchTerm}`,{
                 method:"GET",
                 headers: {"Content-Type":"application/json; charset=utf-8"}
             })
 
+            document.querySelectorAll('.menus').forEach(el =>{
+                if(el.id != 'tafseerMenu')
+                el.classList.remove("active")
+            })// 👆If there's any other menu is open, close it
+
+            document.getElementById("LSMenu").classList.toggle("active")
+            document.dispatchEvent(new Event('click'))
             let result = await response.json()
 
                 if(result.length ==0){ 
@@ -850,7 +837,7 @@ document.getElementById("liveSearch").addEventListener("input", async(e)=>{
                 document.getElementById("LSMenu").style.alignItems = ''
             }
         }else{
-            document.getElementById("LSMenu").style.display = 'none'
+            document.getElementById("LSMenu").classList.remove('active')
         }
 
     }catch(err){
@@ -860,8 +847,6 @@ document.getElementById("liveSearch").addEventListener("input", async(e)=>{
 
 // 👇Choosing the an ayah result from livesearch
 document.getElementById("LSMenu").addEventListener('click',(e)=>{
-    // console.log(e.target)
-
     const selResult = e.target.closest('.LSBtn')
     const selId = selResult.children[0].id.split('lsr')[1]
     localStorage.setItem("selSurahId",selId)
@@ -869,24 +854,27 @@ document.getElementById("LSMenu").addEventListener('click',(e)=>{
 
     const ayahNum =  toEnglish(selResult.children[0].textContent.split('الآية')[1])
 
-    console.log(`selId: ${selId}, AyahNum: ${ayahNum}`)
     LSAyah = ayahNum
     pageAyah =0
     document.getElementById("surahMenu").dispatchEvent(new Event('click'))
 
     document.getElementById("ayahMenu").dispatchEvent(new Event('click'))
-    document.getElementById("LSMenu").style.display = 'none'
+    document.getElementById("LSMenu").classList.toggle('active')
     // document.getElementById('surah').textContent = selSurah.name
 
  // محمد
 })
 
-let tafseerMenuOn = true;
 const tafseerMenu = document.getElementById("tafseerMenu")
 document.getElementById("tafseer").addEventListener("click",(e)=>{
-    tafseerMenuOn =  !tafseerMenuOn
-    if(tafseerMenuOn){
-        tafseerMenu.style.display = 'flex'
+    tafseerMenu.classList.toggle('active')
+    if(tafseerMenu.classList.contains('active')){
+
+        // document.querySelectorAll('.menus').forEach(el =>{
+        //     if(el.id != 'tafseerMenu')
+        //     el.classList.remove("active")
+        // })// 👆If there's any other menu is open, close it
+
         document.getElementById("tafseer").style.backgroundColor =' var(--pal1)'
         if(pgNo.value % 2 ==0 ){
             tafseerMenu.style.inset = '110px auto auto 50%'
@@ -894,31 +882,43 @@ document.getElementById("tafseer").addEventListener("click",(e)=>{
             tafseerMenu.style.inset = '110px 50% auto auto'
         }
     }else{
-        tafseerMenu.style.display = 'none'
         document.getElementById("tafseer").style.backgroundColor =' var(--pal3)'
     }
 })
 
 
-let ayahQMenu = false
 document.getElementById("ayahQuiz").addEventListener("click",(e) =>{
-    ayahQMenu = !ayahQMenu
-    if(ayahQMenu){
-        document.getElementById("ayahQuizMenu").style.display = 'flex'
+    document.getElementById("ayahQuizMenu").classList.toggle('active')
+
+    if(document.getElementById("ayahQuizMenu").classList.contains('active')){
+        
+        document.getElementById("ayahQuiz").style.backgroundColor = 'var(--pal1)'
+        document.querySelectorAll('.menus').forEach(el =>{
+            if(el.id != "ayahQuizMenu" && el.id != 'tafseerMenu')
+                el.classList.remove('active')
+        })// 👆If there's any other menu is open, close it
     }else{
-        document.getElementById("ayahQuizMenu").style.display = 'none'
+        document.getElementById("ayahQuiz").style.backgroundColor = 'var(--pal3)'
     }
 })
 
 
-let statsMenu = false
 document.getElementById("stats").addEventListener("click",async (e) =>{
-    statsMenu = !statsMenu
-    if(statsMenu)
-        document.getElementById("statsMenu").style.display = 'none'
-    else if(!statsMenu)
-        document.getElementById("statsMenu").style.display = 'flex'
+    document.getElementById("statsMenu").classList.toggle("active")
+    
+    if(document.getElementById("statsMenu").classList.contains("active")){
+        if(document.getElementById("stats").style.backgroundColor != '#e24d4d')
+            document.getElementById("stats").style.backgroundColor = 'var(--pal1)'
 
+
+        document.querySelectorAll('.menus').forEach(el =>{
+            if( el.id != 'statsMenu' && el.id != 'tafseerMenu'){
+                el.classList.remove("active")
+            }
+        })// 👆If there's any other menu is open, close it
+    }else{
+        document.getElementById("stats").style.backgroundColor = 'var(--pal3)'
+    }
     try{
         const response= await fetch(`${url}/api/v1/trackers/getTracker`,{
             headers:{'Content-Type':'application/json'},
@@ -1001,14 +1001,46 @@ window.addEventListener("beforeunload",async()=>{
 })
 
 
-// window.addEventListener("load", () => {
-//     console.log("An Audio loaded")
-//   document.getElementById("recitePlayer").play().catch(err => {
-//     console.log("Autoplay blocked:", err);
+document.getElementById("menuX").addEventListener("click",e =>{
+    // console.log(e.target.closest('#menu'))
+    const menuWrapper = e.target.closest("#menu")
+    const menuDiv = menuWrapper.querySelectorAll('.menus')
+    menuDiv.forEach( div =>{
+        if(div.id != 'tafseerMenu' && div.classList.contains('active'))
+            div.classList.toggle('active')
+    })
+})
+
+
+
+// menus.forEach(el => {
+//   const observer = new MutationObserver((mutations) => {
+//     mutations.forEach(mutation => {
+//       if (mutation.attributeName === "class") {
+//         if(el.id != 'tafseerMenu'){
+            
+//         }
+//       }
+//     });
+//   });
+
+//   observer.observe(el, {
+//     attributes: true,
+//     attributeFilter: ["class"]
 //   });
 // });
 
-
-// document.getElementById("recitePlayer").oncanplaythrough = () => {
-//     document.getElementById("recitePlayer").play().catch(e => console.log("Playback blocked or failed:", e));
-// };
+document.addEventListener('click', e =>{
+    const menus = document.querySelectorAll('.menus');
+    let activeMenu = false
+    menus.forEach(el =>{
+        if(el.classList.contains('active') && el.id != 'tafseerMenu' && el.id != 'menuX'){
+            console.log(`The Active Menu: ${el.id}`)
+            activeMenu = true
+        }
+    })
+    if(activeMenu)
+        document.getElementById("menuX").classList.add('active')
+    else
+        document.getElementById("menuX").classList.remove('active')
+})
