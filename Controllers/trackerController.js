@@ -1,5 +1,5 @@
 const {Tracker} = require('../Models')
-const {asyncErHandler} = require("./GlobalErrorHandler")
+const {asyncErHandler} = require("./../Middlewares/GlobalErrorHandler")
 const {Op} = require("sequelize")
 exports.createTracker =  asyncErHandler( async(req,res)=>{
     // Request Body: userId, date,   ❌screenTime => When created it will be zero

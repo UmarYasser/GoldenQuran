@@ -1,5 +1,5 @@
 const {Surah} = require('../Models');
-const {asyncErHandler} = require("./../Controllers/GlobalErrorHandler")
+const {asyncErHandler} = require("./../Middlewares/GlobalErrorHandler")
 const {Op} = require('sequelize')
 
   // const surahs = await Surah.findAll({
@@ -84,8 +84,6 @@ exports.createSurah = asyncErHandler(async( req,res) =>{
 
 
 exports.bulkCreateSurah = async( req,res) =>{
-    // const {name,ayatCount,juzNumber,revelationPlace} = req.body;
-
     try{
 
         const surahs = await Surah.bulkCreate(req.body,{
@@ -152,6 +150,7 @@ exports.getSurah = asyncErHandler(async(req,res) =>{
         })
     }
 })
+
 //🔖API
 exports.getAllSurahs = asyncErHandler(async(req,res) =>{
     const surahs = await Surah.findAll();

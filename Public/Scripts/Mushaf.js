@@ -436,8 +436,8 @@ document.getElementById("haveAccount").addEventListener("click",(e)=>{
     haveAccount = !haveAccount
     if(!haveAccount){
         document.getElementById("nameCon").style.display = 'block'
-        document.getElementById("nameCon").required = true
-
+        document.getElementById("name").required = true
+        console.log("name is now required")
         document.getElementById("conPassCon").style.display = 'block'
         document.getElementById("conPassword").required = true
         
@@ -445,7 +445,7 @@ document.getElementById("haveAccount").addEventListener("click",(e)=>{
         document.getElementById("haveAccount").textContent = "لديك حساب مسبقًا؟"
     }else if(haveAccount){
         document.getElementById("nameCon").style.display = 'none'
-        document.getElementById("nameCon").required = false
+        document.getElementById("name").required = false
 
         document.getElementById("conPassCon").style.display = 'none'
         document.getElementById("conPassword").required = false
@@ -1035,7 +1035,6 @@ document.addEventListener('click', e =>{
     let activeMenu = false
     menus.forEach(el =>{
         if(el.classList.contains('active') && el.id != 'tafseerMenu' && el.id != 'menuX'){
-            console.log(`The Active Menu: ${el.id}`)
             activeMenu = true
         }
     })

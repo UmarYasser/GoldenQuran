@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const trackerCon = require("../Controllers/trackerController")
-const authCon = require("../Controllers/authController")
-
+const authCon = require("./../Middlewares/auth")
+ 
 router.post('/createTracker',authCon.protect,trackerCon.createTracker)
 
 router.get('/getTracker',authCon.protect,trackerCon.getTracker)

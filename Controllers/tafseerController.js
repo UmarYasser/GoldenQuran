@@ -1,6 +1,6 @@
 const { RAW } = require('sequelize/lib/query-types')
 const {Tafseer,Ayah} = require('./../Models')
-const {asyncErHandler} = require('./GlobalErrorHandler')
+const {asyncErHandler} = require('./../Middlewares/GlobalErrorHandler')
 const {Op} = require('sequelize')
 
 const completeAssign = async()=>{

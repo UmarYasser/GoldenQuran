@@ -1,5 +1,5 @@
 const {Ayah} = require('./../Models')
-const {asyncErHandler} = require("./GlobalErrorHandler")
+const {asyncErHandler} = require("./../Middlewares/GlobalErrorHandler")
 const { Op, Sequelize } = require('sequelize')
 const qURL = 'http://api.alquran.cloud/v1'
 // const CustomError = require('./../Utils/CustomError')
@@ -70,7 +70,7 @@ exports.createAyah =  asyncErHandler(async(req,res) =>{
     })
 })
 
-//🔖API
+
 exports.getAllAyat = asyncErHandler(async(req,res)=>{
 
     const ayat = await Ayah.findAll({
@@ -84,7 +84,7 @@ exports.getAllAyat = asyncErHandler(async(req,res)=>{
     })
 })
 
-//🔖API
+
 // Request ayah, return all ayat in the that page
 exports.getAyahPage = asyncErHandler(async(req,res) =>{
     // 2 things should be passed, surahID and ayahNumber
@@ -164,7 +164,7 @@ exports.getAyahPage = asyncErHandler(async(req,res) =>{
     } */
 })
 
-//🔖API
+
 // Request Page, return the first ayah in that page
 exports.getPageAyah = asyncErHandler( async(req,res) => {
     // Request URL: /GQ/page/5
@@ -191,7 +191,7 @@ exports.getPageAyah = asyncErHandler( async(req,res) => {
 
 })
 
-//🔖API
+
 exports.searchAyah = asyncErHandler( async(req,res)=>{
     const query = req.query.q
     //Format text to قemove tashkeel:
@@ -289,9 +289,7 @@ exports.bulkCreateAyah = async(req,res)=>{
     // req.body should be an array of ayah objects
     // Ayat will be passed as a huge string and must be seprated by the (n), n being the ayah number 
     // Will be split into an array of course, and must make a counter to make ayahNumber match the number in the ayah
-    
     try{
-
         const surahId = parseInt(req.params.surahId,10) || 2; // Example surahId
         let {ayahString} = req.body
         const ayahArray = ayahString.trim()
@@ -299,14 +297,12 @@ exports.bulkCreateAyah = async(req,res)=>{
         .split(/\(\d+\)/) // Split on any seq. of numbers with the () ==> aasda(10)asdasdasd Is removed
         .filter(ay => ay != '') // Remove the empty array element found after the split
         
-        
         ayahString = ayahString.trim()
         const opBr = ayahString.indexOf('(') // 5
         const clBr = ayahString.indexOf(')') // 8    Get the position of the first ayah end number
         const ayahNum = ayahString.substring(opBr+1,clBr) // [6,8[
         //                                    6       8 (Excluded)
         let ayahCounter = parseInt(ayahNum) // Ex: 10
-        
         
         var surah = await Ayah.sequelize.models.Surah.findByPk(surahId)
         let arrayObj = ayahArray.map((aya)=>{
@@ -318,7 +314,7 @@ exports.bulkCreateAyah = async(req,res)=>{
                 ayahNumber: ayahCounter -1 // Because it was incremented after being used
             }
         })
-        
+
         const ayatDB = await Ayah.bulkCreate(arrayObj,{validate:true, ignoreDuplicates:true})
         
         res.status(201).json({
@@ -432,7 +428,7 @@ exports.bulkPageAssign = asyncErHandler(async(req,res)=>{
     })
 })
 
-//🔖API
+
 exports.ayahQuiz = asyncErHandler(async(req,res)=>{
     // Get random ayah from DB
     const randomAyah = await Ayah.findOne({

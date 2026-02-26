@@ -1,5 +1,5 @@
 const {User} = require("./../Models")
-const { asyncErHandler } = require("./GlobalErrorHandler")
+const { asyncErHandler } = require("./../Middlewares/GlobalErrorHandler")
 const jwt = require("jsonwebtoken")
 const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
@@ -91,30 +91,6 @@ exports.logIn = asyncErHandler(async(req,res)=>{
         message:'Logging In Successfully',
         token: process.env.NODE_ENV =='development' ? token : 'token?'
     })
-})
-
-exports.protect = asyncErHandler(async(req,res,next)=>{
-    const token = req.cookies.jwt
-    
-    if(!token){
-        return res.status(401).json({
-            status:'fail',
-            message:"Invaild Token"
-        })
-    }
-    const decodedToken = await util.promisify(jwt.verify)(token,process.env.SECRET_STR)
-    const user = await User.findOne({where:{uuid:decodedToken.id},
-        attributes:{exclude:['password']}, raw:true})
-    
-    if(!user){
-        return res.status(401).json({
-            status:'fail',
-            message:'User not found'
-        })
-    }
-
-    req.user = user
-    next()
 })
 
 exports.logout = asyncErHandler(async(req,res)=>{

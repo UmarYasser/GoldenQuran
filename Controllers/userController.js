@@ -1,5 +1,5 @@
 const {User} = require("./../Models")
-const {asyncErHandler} = require('./GlobalErrorHandler.js')
+const {asyncErHandler} = require('../Middlewares/GlobalErrorHandler.js')
 //⭐ You call the index.js model like above,
 //⭐ And it discovers all the models and import here what's needed
 
