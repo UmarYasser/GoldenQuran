@@ -13,8 +13,8 @@ let prevPageScTime
 let overallPagesRead =0
 let LSAyah
 let pageAyah
-let surahMenuSel
-let ayahMenuSel
+let surahMenuSel = false
+let ayahMenuSel = false
 let ayahQuizResult
 let stopWatch = setInterval(()=>{
     pageScTime++;
@@ -143,7 +143,7 @@ const track = async()=>{
         const result = await response.json()
         // console.log("Tracker Result",result)
         if(!response.ok){
-           return console.log(`Error Fetching: ${response.statusText}`)
+           throw new Error(`Error Fetching: ${response.statusText}`)
         }
 
     }catch(err){
@@ -593,6 +593,7 @@ document.querySelector("#surahMenu").addEventListener('click',async(e)=>{
 
 // 👇Toggling Ayah Menu
 document.getElementById("selAyah").addEventListener("click", (e)=>{
+
     document.getElementById("ayahMenu").classList.toggle("active")
     
     if(document.getElementById("ayahMenu").classList.contains("active")){
@@ -617,13 +618,17 @@ document.getElementById("ayahMenu").addEventListener('click',(e)=>{
             ayah = LSAyah || pageAyah
         }
         document.getElementById("ayahNumber").textContent = toArabic(ayah)
-        pgNo.value = JSON.parse(localStorage.getItem("selSurahData")).ayat[ayah-1].pageNumber
-        if(!pageAyah){
-            pgNo.dispatchEvent(new Event('input'))
-        } // If the page event listener is calling this event, don't call the page event listener
-    
-        if(ayahMenuSel)
-            document.getElementById("ayahMenu").classList.toggle('active')
+
+        setTimeout(() =>{
+            pgNo.value = JSON.parse(localStorage.getItem("selSurahData")).ayat[ayah-1].pageNumber
+            if(!pageAyah){
+                pgNo.dispatchEvent(new Event('input'))
+            } // If the page event listener is calling this event, don't call the page event listener
+        
+            if(ayahMenuSel)
+                document.getElementById("ayahMenu").classList.toggle('active')
+
+        },400)
 
     }catch(err){
         console.log(`Error at Ayah Menu: ${err.stack}`)
@@ -659,8 +664,12 @@ pgNo.addEventListener('input', async(e) =>{
             document.getElementById('userTime').textContent = timeFormatting(result.tracker.screenTime)
             document.getElementById('userPages').textContent = toArabic(result.tracker.pagesRead)
         }
+
+        if(!response.ok){
+            throw new Error(`Error Fetching Tracker:${err.stack}`)
+        }
     }catch(err){
-        console.log(`Error Fetching Tracker: ${err}`)
+        console.log(`Error Fetching Tracker: ${err.stack}`)
     }
 
     localStorage.setItem("pageNumber",pageNo)
@@ -821,7 +830,6 @@ document.getElementById("liveSearch").addEventListener("input", async(e)=>{
                             `
                     document.getElementById("LSMenu").style.alignItems = 'center'
                 }else{
-                    document.getElementById("LSMenu").style.display = 'flex'
                     document.getElementById("LSMenu").innerHTML= `<p id="LSLength">عدد النتائج: ${toArabic(result.ayat.length)}</p>`
                      let html =''
                 document.getElementById("LSMenu").innerHTML += result.ayat.map(ay=>{
@@ -853,12 +861,13 @@ document.getElementById("LSMenu").addEventListener('click',(e)=>{
 
 
     const ayahNum =  toEnglish(selResult.children[0].textContent.split('الآية')[1])
-
     LSAyah = ayahNum
     pageAyah =0
     document.getElementById("surahMenu").dispatchEvent(new Event('click'))
 
-    document.getElementById("ayahMenu").dispatchEvent(new Event('click'))
+    setTimeout(() =>{
+        document.getElementById("ayahMenu").dispatchEvent(new Event('click'))
+    },300)
     document.getElementById("LSMenu").classList.toggle('active')
     // document.getElementById('surah').textContent = selSurah.name
 
