@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'https://goldenquran.onrender.com'
 const getTr = document.getElementById("getTr")
 const pgNo = document.getElementById("pageNumber")
 const pageLf = document.getElementById("pageLf")
