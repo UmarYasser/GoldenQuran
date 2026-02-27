@@ -9,9 +9,7 @@ module.exports = (sequelize,Datatypes) =>{
             this.belongsTo(Surah,{foreignKey: "surahId", as:"surah"})
             this.hasOne(Tafseer,{foreignKey:"ayahId", as:"tafseer"})
         }
-        // static async findBySurahAndAyahNumber(surahId,ayahNumber){
-        //     return await Ayat.findOne({where:{surahId,ayahNumber}})
-        // }
+
     }
 
     Ayat.init({

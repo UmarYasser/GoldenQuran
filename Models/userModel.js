@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({Post,Tracker}) { // relationships
       // define association here
-      this.hasMany(Post,{foreignKey:'userId'})
       this.hasMany(Tracker,{foreignKey:'userId', as:'tracker'})
     }
 

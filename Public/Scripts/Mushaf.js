@@ -1,4 +1,4 @@
-const url = 'https://goldenquran.onrender.com'
+const url = 'http://www.goldenquran.duckdns.org/'
 const getTr = document.getElementById("getTr")
 const pgNo = document.getElementById("pageNumber")
 const pageLf = document.getElementById("pageLf")
@@ -644,7 +644,7 @@ document.getElementById("juzNumber").addEventListener('input', (e)=>{
     const firSurah = surahResult.find(su => juzNo == su.juzNumber)
     const firAyah = JSON.parse(localStorage.getItem("selSurahData")).ayat.find(ay => ay.pageNumber == firSurah.pageNumber)
     pgNo.value = firAyah.pageNumber
-
+    // console.log(firAyah)
     pgNo.dispatchEvent(new Event('input'))
 })
 
@@ -1016,28 +1016,10 @@ document.getElementById("menuX").addEventListener("click",e =>{
     const menuDiv = menuWrapper.querySelectorAll('.menus')
     menuDiv.forEach( div =>{
         if(div.id != 'tafseerMenu' && div.classList.contains('active'))
-            div.classList.toggle('active')
+            div.classList.remove('active')
     })
 })
 
-
-
-// menus.forEach(el => {
-//   const observer = new MutationObserver((mutations) => {
-//     mutations.forEach(mutation => {
-//       if (mutation.attributeName === "class") {
-//         if(el.id != 'tafseerMenu'){
-            
-//         }
-//       }
-//     });
-//   });
-
-//   observer.observe(el, {
-//     attributes: true,
-//     attributeFilter: ["class"]
-//   });
-// });
 
 document.addEventListener('click', e =>{
     const menus = document.querySelectorAll('.menus');
